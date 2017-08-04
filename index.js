@@ -1,7 +1,9 @@
 const {treePrototype} = require('./src/tree');
 
 function createTree(){
-  return Object.create(treePrototype);
+  return Object.assign(Object.create(treePrototype),{
+    rootNode: undefined
+  });
 }
 
 module.exports = {
