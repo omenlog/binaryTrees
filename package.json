@@ -8,6 +8,7 @@
     "flow-remove-types": "^1.2.1"
   },
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "flow": "flow"
   },
