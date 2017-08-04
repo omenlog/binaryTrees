@@ -12,6 +12,10 @@
     "test": "jest",
     "flow": "flow"
   },
+  "jest":{
+      "moduleFileExtensions": ["js"],
+      "moduleDirectories": ["node_modules","src"]
+  },
   "keywords": ["TDA", "binary", "search", "tree", "functional"],
   "author": "Omar Enrique Lopez Gonzalez",
   "license": "MIT"
