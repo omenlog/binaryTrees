@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest",
+    "test:watch": "jest --watch",
     "flow": "flow"
   },
   "jest":{
