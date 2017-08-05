@@ -1,14 +1,20 @@
-const nodePrototype = {
-  setChild(childSide,nodeValue){
-    const child = (childSide === "LEFT")? "leftChild":"rightChild";
-    this[child] = createNode(nodeValue);
+const Node = {
+  setChild(childSide, value) {
+    const child = childSide === "LEFT" ? "leftChild" : "rightChild";
+    this[child] = createNode(value);
     this[child].parentNode = this;
+    return this;
   },
-  setLeftChild(nodeValue){
-    this.setChild("LEFT",nodeValue);
+  setLeftChild(value) {
+    return this.setChild("LEFT", value);
   },
-  setRightChild(nodeValue){
-    this.setChild("RIGHT",nodeValue);
+  setRightChild(value) {
+    return this.setChild("RIGHT", value);
+  },
+  insertChild(value) {
+    return value < this.getKey()
+      ? this.setLeftChild(value)
+      : this.setRightChild(value);
   },
   hasChildrens() {
     return this.leftChild || this.rightChild;
@@ -21,7 +27,7 @@ const nodePrototype = {
 
 function createNode(newKey = 0) {
   let key = newKey;
-  return Object.assign(Object.create(nodePrototype), {
+  return Object.assign(Object.create(Node), {
     getKey() {
       return key;
     },

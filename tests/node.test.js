@@ -51,5 +51,13 @@ describe("Node Tests", () => {
       const newNode = createNode();
       expect(newNode.childrens()).toMatchObject({leftChild: undefined,rightChild: undefined});
     });
+
+    test("every node is capable of take a value and setup this as one of its childrens",() => {
+      const newNode =  createNode(10);
+      newNode.insertChild(20);
+      newNode.insertChild(5);
+      expect(newNode.leftChild.getKey()).toBe(5);
+      expect(newNode.rightChild.getKey()).toBe(20);
+    });
   });
 });
