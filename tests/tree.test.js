@@ -14,6 +14,7 @@ describe("Tree Tests",() => {
 
     test("the new tree must be able to add a new node",() => {
       const newTree = createTree();
+      expect(newTree.contain(4)).toBeFalsy();
       newTree.insert(4);
       expect(newTree.contain(4)).toBeTruthy();
     });
