@@ -1,4 +1,4 @@
-const {createNode} = require('Node');
+const { createNode } = require("Node");
 
 function findParent(treeNode, value) {
   if (!treeNode.hasChildrens()) return treeNode;
@@ -11,34 +11,32 @@ function findParent(treeNode, value) {
   }
 }
 
-function find(rootNode, value) {
+function find(value, rootNode) {
   if (rootNode === undefined) {
     return false;
   } else {
     const nodeValue = rootNode.getKey();
-    if (nodeValue === value) {
-      return true;
-    } else if (nodeValue < value) {
-      return find(rootNode.rightChild, value);
-    } else {
-      return find(rootNode.leftChild, value);
-    }
+    return nodeValue === value
+      ? true
+      : nodeValue < value
+        ? find(value, rootNode.rightChild)
+        : find(value, rootNode.leftChild);
   }
 }
 
 /* Declaring tree prototype */
 const Tree = {
-  setRootNodeWith(value){
+  setRootNodeWith(value) {
     this.rootNode = createNode(value);
   },
   insert(value) {
-    (this.rootNode !== undefined)
-      ? findParent(this.rootNode, value).insertChild()
+    this.rootNode !== undefined
+      ? findParent(this.rootNode, value).insertChild(value)
       : this.setRootNodeWith(value);
     return this;
   },
   contain(value) {
-    return find(this.rootNode, value);
+    return find(value, this.rootNode);
   }
 };
 
