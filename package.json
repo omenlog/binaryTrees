@@ -4,6 +4,7 @@
   "description": "A functional implementation of a binary search tree TDA",
   "main": "index.js",
   "devDependencies": {
+    "eslint-plugin-flowtype": "^2.35.0",
     "flow-bin": "^0.51.1",
     "flow-remove-types": "^1.2.1"
   },
@@ -14,11 +15,22 @@
     "test:coverage": "jest --coverage",
     "flow": "flow"
   },
-  "jest":{
-      "moduleFileExtensions": ["js"],
-      "moduleDirectories": ["node_modules","src"]
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ]
   },
-  "keywords": ["TDA", "binary", "search", "tree", "functional"],
+  "keywords": [
+    "TDA",
+    "binary",
+    "search",
+    "tree",
+    "functional"
+  ],
   "author": "Omar Enrique Lopez Gonzalez",
   "license": "MIT"
 }
