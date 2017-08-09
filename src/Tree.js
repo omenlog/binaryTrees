@@ -16,7 +16,7 @@ function findNode(value, rootNode) {
   } else {
     const nodeValue = rootNode.getKey();
     return nodeValue === value
-      ? nodeValue
+      ? rootNode
       : nodeValue < value
         ? findNode(value, rootNode.rightChild)
         : findNode(value, rootNode.leftChild);
@@ -41,8 +41,8 @@ const Tree = {
   insert(...args) {
     this.insertList(flat(args));
   },
-  insertList(values) {
-    values.forEach(v => this.add(v));
+  insertList(args) {
+    args.forEach(arg => this.add(arg));
   },
   add(value) {
     const { rootNode } = this;
@@ -52,8 +52,10 @@ const Tree = {
 
     return this;
   },
-  contain(value) {
-    return findNode(value, this.rootNode);
+  contain(...args) {
+    const nodes = flat(args).map(arg => findNode(arg,this.rootNode));
+    const everyNodeIsFinded = nodes.every(node => node);
+    return everyNodeIsFinded ? nodes : false;
   }
 };
 
