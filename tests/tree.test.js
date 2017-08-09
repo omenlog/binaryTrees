@@ -12,11 +12,24 @@ describe("Tree Tests",() => {
       expect(newTree).toMatchObject({rootNode: undefined});
     });
 
-    test("the new tree must be able to add a new node",() => {
+    test("the tree must be capable of add a new node or add varius nodes in one single call to insert function",() => {
       const newTree = createTree();
-      expect(newTree.contain(4)).toBeFalsy();
-      newTree.insert(4);
-      expect(newTree.contain(4)).toBeTruthy();
+
+      newTree.insert(1);
+      expect(newTree.contain(1)).not.toBeNull();
+
+      newTree.insert(2,3);
+      expect(newTree.contain(2)).not.toBeNull();
+      expect(newTree.contain(3)).not.toBeNull();
+
+      newTree.insert([4,5]);
+      expect(newTree.contain(4)).not.toBeNull();
+      expect(newTree.contain(5)).not.toBeNull();
     });
+
+    // test("the tree must be capable of return the minimun value of one subtree",() => {
+    //   const newTree = createTree();
+    //   newTree.insert(3).insert(2).
+    // });
   });
 });
