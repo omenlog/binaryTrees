@@ -1,3 +1,5 @@
+"use strict";
+
 const { createNode } = require("Node");
 
 function addNode(value, treeNode) {
@@ -23,15 +25,21 @@ function findNode(value, rootNode) {
 
 const isAListThis = Array.isArray;
 
+function flatReducer(flatArray, arg) {
+  return isAListThis(arg) ? flatArray.concat(flat(arg)) : flatArray.concat(arg);
+}
+
+function flat(args) {
+  return args.reduce(flatReducer, []);
+}
+
 /* Declaring tree prototype */
 const Tree = {
   setRootNodeWith(value) {
     this.rootNode = createNode(value);
   },
   insert(...args) {
-    args.forEach(arg => {
-      isAListThis(arg) ? this.insertList(arg) : this.add(arg);
-    });
+    this.insertList(flat(args));
   },
   insertList(values) {
     values.forEach(v => this.add(v));
@@ -49,8 +57,18 @@ const Tree = {
   }
 };
 
-function createTree() {
+function createEmptyTree() {
   return Object.assign(Object.create(Tree), { rootNode: undefined });
+}
+
+function createNewTreeWith(arg) {
+  const newTree = createEmptyTree();
+  arg.forEach(a => newTree.insert(a));
+  return newTree;
+}
+
+function createTree(...args) {
+  return args.length === 0 ? createEmptyTree() : createNewTreeWith(args);
 }
 
 module.exports = {
