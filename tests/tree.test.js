@@ -1,8 +1,12 @@
 describe("Tree Tests",() => {
-  const {createTree} = require('Tree');
+  const {createTree,minOf} = require('Tree');
 
   it("should export a createTree function",() => {
     expect(createTree).toBeDefined();
+  });
+
+  it("should export a minOf function",() => {
+    expect(minOf).toBeDefined();
   });
 
   describe("createTree function",() => {
@@ -44,10 +48,12 @@ describe("Tree Tests",() => {
       expect(newTree.contain(2,3,4)).not.toBeFalsy();
       expect(newTree.contain([5,6])).not.toBeFalsy();
     });
+  });
 
-    // test("the tree must be capable of return the minimun value of one subtree",() => {
-    //   const newTree = createTree();
-    //   newTree.insert(3).insert(2).
-    // });
+  it("should return the minimun value of one subtree",() => {
+    const newTree = createTree();
+    newTree.insert(11,12,2,20,4,37,1,37,12);
+    expect(minOf(newTree.rootNode).getKey()).toBe(1);
+    expect(minOf(newTree.rootNode.rightChild).getKey()).toBe(12);
   });
 });
