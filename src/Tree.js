@@ -3,10 +3,12 @@
 const { createNode } = require("Node");
 
 function addNode(value, treeNode) {
-  return !treeNode.hasChildrens()
-    ? treeNode.insertChild(value)
-    : treeNode.getKey() > value
-      ? addNode(value, treeNode.leftChild)
+  return treeNode.getKey() > value
+    ? treeNode.leftChild === undefined
+      ? treeNode.insertChild(value)
+      : addNode(value, treeNode.leftChild)
+    : treeNode.rightChild === undefined
+      ? treeNode.insertChild(value)
       : addNode(value, treeNode.rightChild);
 }
 
@@ -53,7 +55,7 @@ const Tree = {
     return this;
   },
   contain(...args) {
-    const nodes = flat(args).map(arg => findNode(arg,this.rootNode));
+    const nodes = flat(args).map(arg => findNode(arg, this.rootNode));
     const everyNodeIsFinded = nodes.every(node => node);
     return everyNodeIsFinded ? nodes : false;
   }
@@ -73,6 +75,13 @@ function createTree(...args) {
   return args.length === 0 ? createEmptyTree() : createNewTreeWith(args);
 }
 
+function minOf(rootNode) {
+  return rootNode.leftChild === undefined
+    ? rootNode
+    : minOf(rootNode.leftChild);
+}
+
 module.exports = {
-  createTree
+  createTree,
+  minOf
 };
