@@ -42,6 +42,7 @@ const Tree = {
   },
   insert(...args) {
     this.insertList(flat(args));
+    return this;
   },
   insertList(args) {
     args.forEach(arg => this.add(arg));
