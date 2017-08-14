@@ -59,6 +59,49 @@ const Tree = {
     const nodes = flat(args).map(arg => findNode(arg, this.rootNode));
     const everyNodeIsFinded = nodes.every(node => node);
     return everyNodeIsFinded ? nodes : false;
+  },
+  remove(arg){
+    const nodes = this.contain(arg);
+    if(nodes !== false){
+
+      const node = nodes[0];
+
+      if(!node.hasChildrens()){
+        const {parentNode} = node;
+        if(parentNode === undefined){
+          this.rootNode = undefined;
+        }
+        else if(parentNode.leftChild && parentNode.leftChild.getKey() === node.getKey()){
+          parentNode.leftChild = undefined;
+        }else{
+          parentNode.rightChild = undefined;
+        }
+      }
+      else if(node.hasOneChild()){
+        const {parentNode,leftChild} = node;
+        const childSide = (leftChild !== undefined) ? "leftChild":"rightChild";
+        const child = node[childSide];
+
+        if(parentNode === undefined){
+          this.rootNode = child;
+        }
+        else if(parentNode.leftChild && parentNode.leftChild.getKey() === node.getKey()){
+          parentNode.leftChild = child;
+        }
+        else{
+          parentNode.rightChild = child;
+        }
+
+        child.parentNode = parentNode;
+      }
+      else{
+        const succesor = minOf(node.rightChild);
+        this.remove(succesor.getKey());
+        node.setKey(succesor.getKey());
+      }
+    }
+
+    return this;
   }
 };
 

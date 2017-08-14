@@ -48,6 +48,63 @@ describe("Tree Tests",() => {
       expect(newTree.contain(2,3,4)).not.toBeFalsy();
       expect(newTree.contain([5,6])).not.toBeFalsy();
     });
+
+    test("the tree must be able to remove some node",() => {
+
+      /* test case when the node deleted has 0 child */
+
+      const tree1 = createTree(2,3,1);
+
+      tree1.remove(1);
+      expect(tree1.contain(1)).toBeFalsy();
+      expect(tree1.rootNode.leftChild).toBeUndefined();
+
+      tree1.remove(3);
+      expect(tree1.contain(3)).toBeFalsy();
+      expect(tree1.rootNode.rightChild).toBeUndefined();
+
+      tree1.remove(2);
+      expect(tree1.contain(2)).toBeFalsy();
+      expect(tree1.rootNode).toBeUndefined();
+
+      /* test case when the node removed has only one child */
+
+      const tree2 = createTree().insert(2,3,1,4)
+      tree2.remove(3);
+      expect(tree2.contain(3)).toBeFalsy();
+      expect(tree2.rootNode.rightChild.getKey()).toBe(4);
+
+      const tree3 = createTree().insert(2,1,3,2.5,6,5)
+      tree3.remove(6);
+      expect(tree3.contain(6)).toBeFalsy();
+      expect(tree3.rootNode.rightChild.rightChild.getKey()).toBe(5);
+
+      const tree4 = createTree().insert(1,4,3,5);
+      tree4.remove(1);
+      expect(tree4.contain(1)).toBeFalsy();
+      expect(tree4.rootNode.getKey()).toBe(4);
+
+      /* test cases when the node remove has two child */
+
+      const tree5 = createTree().insert(2,1,3,2.5,6,5);
+
+      tree5.remove(3);
+      expect(tree5.contain(3)).toBeFalsy();
+      expect(tree5.rootNode.rightChild.getKey()).toBe(5);
+      expect(tree5.rootNode.rightChild.leftChild.getKey()).toBe(2.5);
+      expect(tree5.rootNode.rightChild.rightChild.getKey()).toBe(6);
+
+      tree5.remove(5);
+      expect(tree5.contain(5)).toBeFalsy();
+      expect(tree5.rootNode.leftChild.getKey()).toBe(1);
+      expect(tree5.rootNode.rightChild.getKey()).toBe(6);
+      expect(tree5.rootNode.rightChild.leftChild.getKey()).toBe(2.5);
+      expect(tree5.rootNode.rightChild.rightChild).toBeUndefined();
+
+      tree5.remove(2);
+      expect(tree5.contain(2)).toBeFalsy();
+      expect(tree5.rootNode.getKey()).toBe(2.5);
+    });
   });
 
   it("should return the minimun value of one subtree",() => {
@@ -55,5 +112,8 @@ describe("Tree Tests",() => {
     newTree.insert(11,12,2,20,4,37,1,37,12);
     expect(minOf(newTree.rootNode).getKey()).toBe(1);
     expect(minOf(newTree.rootNode.rightChild).getKey()).toBe(12);
+
+    const anotherTree = createTree().insert(1,-1);
+    expect(minOf(anotherTree.rootNode).getKey()).toBe(-1);
   });
 });
