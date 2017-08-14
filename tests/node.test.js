@@ -59,5 +59,14 @@ describe("Node Tests", () => {
       expect(newNode.leftChild.getKey()).toBe(5);
       expect(newNode.rightChild.getKey()).toBe(20);
     });
+
+    test("every node is capable of say if it have almost one child",() => {
+      const newNode =  createNode(2).insertChild(1);
+      expect(newNode.hasOneChild()).toBeTruthy();
+      newNode.insertChild(3);
+      expect(newNode.hasOneChild()).toBeFalsy();
+      const anotherNode = createNode(1);
+      expect(anotherNode.hasOneChild()).toBeFalsy();
+    });
   });
 });
