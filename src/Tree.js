@@ -25,6 +25,41 @@ function findNode(value, rootNode) {
   }
 }
 
+function replaceIn(tree, oldNode, newNode) {
+  const { parentNode } = oldNode;
+
+  if (parentNode === undefined) {
+    tree.rootNode = newNode;
+  } else {
+    const { leftChild } = parentNode;
+    if (leftChild && leftChild.getKey() === oldNode.getKey()) {
+      parentNode.leftChild = newNode;
+    } else {
+      parentNode.rightChild = newNode;
+    }
+  }
+
+  if (newNode !== undefined) {
+    newNode.parentNode = oldNode.parentNode;
+  }
+}
+
+function removeFrom(tree, node) {
+  if (!node.hasChildrens()) {
+    replaceIn(tree, node, undefined);
+  } else if (node.hasOneChild()) {
+    const nodeChild =
+      node.leftChild !== undefined ? node.leftChild : node.rightChild;
+    replaceIn(tree, node, nodeChild);
+  } else {
+    const succesor = minOf(node.rightChild);
+    tree.remove(succesor.getKey());
+    node.setKey(succesor.getKey());
+  }
+
+  return tree;
+}
+
 const isAListThis = Array.isArray;
 
 function flatReducer(flatArray, arg) {
@@ -60,48 +95,9 @@ const Tree = {
     const everyNodeIsFinded = nodes.every(node => node);
     return everyNodeIsFinded ? nodes : false;
   },
-  remove(arg){
+  remove(arg) {
     const nodes = this.contain(arg);
-    if(nodes !== false){
-
-      const node = nodes[0];
-
-      if(!node.hasChildrens()){
-        const {parentNode} = node;
-        if(parentNode === undefined){
-          this.rootNode = undefined;
-        }
-        else if(parentNode.leftChild && parentNode.leftChild.getKey() === node.getKey()){
-          parentNode.leftChild = undefined;
-        }else{
-          parentNode.rightChild = undefined;
-        }
-      }
-      else if(node.hasOneChild()){
-        const {parentNode,leftChild} = node;
-        const childSide = (leftChild !== undefined) ? "leftChild":"rightChild";
-        const child = node[childSide];
-
-        if(parentNode === undefined){
-          this.rootNode = child;
-        }
-        else if(parentNode.leftChild && parentNode.leftChild.getKey() === node.getKey()){
-          parentNode.leftChild = child;
-        }
-        else{
-          parentNode.rightChild = child;
-        }
-
-        child.parentNode = parentNode;
-      }
-      else{
-        const succesor = minOf(node.rightChild);
-        this.remove(succesor.getKey());
-        node.setKey(succesor.getKey());
-      }
-    }
-
-    return this;
+    return nodes !== false ? removeFrom(this, nodes[0]) : this;
   }
 };
 
@@ -109,9 +105,9 @@ function createEmptyTree() {
   return Object.assign(Object.create(Tree), { rootNode: undefined });
 }
 
-function createNewTreeWith(arg) {
+function createNewTreeWith(args) {
   const newTree = createEmptyTree();
-  arg.forEach(a => newTree.insert(a));
+  args.forEach(arg => newTree.insert(arg));
   return newTree;
 }
 
