@@ -1,5 +1,5 @@
 describe("Node Tests", () => {
-  const {createNode} = require("Node");
+  const {createNode} = require('structures/Node')
 
   it("should export a createNode function", () => {
     expect(createNode).toBeDefined();
@@ -33,17 +33,17 @@ describe("Node Tests", () => {
     });
 
     test("every node is capable of setup correctly its children using setter function",() => {
-      const newNode = createNode();
-      newNode.setLeftChild(1);
+      const newNode = createNode(2);
+      newNode.insertChild(1);
+      newNode.insertChild(3);
       expect(newNode.leftChild.getKey()).toBe(1);
-      newNode.setRightChild(2);
-      expect(newNode.rightChild.getKey()).toBe(2);
+      expect(newNode.rightChild.getKey()).toBe(3);
     });
 
     test("every node is capable of tell if it have children using hasChildren() function",() => {
       const newNode = createNode(10);
       expect(newNode.hasChildrens()).toBeFalsy();
-      newNode.setRightChild(20);
+      newNode.insertChild(20);
       expect(newNode.hasChildrens()).toBeTruthy();
     });
 

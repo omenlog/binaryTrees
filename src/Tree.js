@@ -1,6 +1,6 @@
 "use strict";
 
-const { createNode } = require("Node");
+const { createNode } = require('structures/Node');
 const {flat} = require("utils/tools");
 const {addNode,findNode,removeFrom,insertListIn} = require('utils/treeTools');
 
