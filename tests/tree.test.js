@@ -1,5 +1,5 @@
 describe("Tree Tests",() => {
-  const {createTree,minOf} = require('Tree');
+  const {createTree} = require('structures/Tree');
 
   it("should export a createTree function",() => {
     expect(createTree).toBeDefined();
@@ -26,14 +26,14 @@ describe("Tree Tests",() => {
     test("the tree must be capable of add a new node or add several nodes in one single call to insert function",() => {
       const newTree = createTree();
 
-      newTree.insert(1);
-      expect(newTree.contain(1)).not.toBeNull();
+      newTree.insert(3);
+      expect(newTree.contain(3)).not.toBeNull();
 
-      newTree.insert(2,3);
-      expect(newTree.contain([2,3])).not.toBeNull();
+      newTree.insert(2,4);
+      expect(newTree.contain([2,4])).not.toBeNull();
 
-      newTree.insert([4,5]);
-      expect(newTree.contain(4,5)).not.toBeNull();
+      newTree.insert([1,5]);
+      expect(newTree.contain(1,5)).not.toBeNull();
     });
 
     test("the tree is capable of check if one or several nodes are present or not, if the query is for many nodes the function return false just is one node is missing in the tree",() => {

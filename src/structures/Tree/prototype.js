@@ -1,11 +1,8 @@
-"use strict";
+const {addNode,findNode,insertListIn,removeFrom} = require('./privateFunc');
+const {createNode} = require('../Node');
+const {flat} = require('../../utils/tools');
 
-const { createNode } = require('structures/Node');
-const {flat} = require("utils/tools");
-const {addNode,findNode,removeFrom,insertListIn} = require('utils/treeTools');
-
-/* Declaring tree prototype */
-const Tree = {
+const treePrototype = {
   setRootNodeWith(value) {
     this.rootNode = createNode(value);
   },
@@ -31,20 +28,4 @@ const Tree = {
   }
 };
 
-function createEmptyTree() {
-  return Object.assign(Object.create(Tree), { rootNode: undefined });
-}
-
-function createNewTreeWith(args) {
-  const newTree = createEmptyTree();
-  args.forEach(arg => newTree.insert(arg));
-  return newTree;
-}
-
-function createTree(...args) {
-  return args.length === 0 ? createEmptyTree() : createNewTreeWith(args);
-}
-
-module.exports = {
-  createTree,
-};
+module.exports = treePrototype;
