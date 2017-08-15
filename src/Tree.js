@@ -2,7 +2,7 @@
 
 const { createNode } = require("Node");
 const {flat} = require("utils/tools");
-const {addNode,findNode,removeFrom,minOf,insertListIn} = require('utils/treeTools');
+const {addNode,findNode,removeFrom,insertListIn} = require('utils/treeTools');
 
 /* Declaring tree prototype */
 const Tree = {
@@ -47,5 +47,4 @@ function createTree(...args) {
 
 module.exports = {
   createTree,
-  minOf
 };
