@@ -5,10 +5,6 @@ describe("Tree Tests",() => {
     expect(createTree).toBeDefined();
   });
 
-  it("should export a minOf function",() => {
-    expect(minOf).toBeDefined();
-  });
-
   describe("createTree function",() => {
 
     it("should create a new tree and empty tree with the rootNode property 'undefined' when no argument is passed to factory function",() => {
@@ -79,6 +75,8 @@ describe("Tree Tests",() => {
       expect(tree3.contain(6)).toBeFalsy();
       expect(tree3.rootNode.rightChild.rightChild.getKey()).toBe(5);
 
+      expect(tree3.remove(234)).toEqual(tree3);
+
       const tree4 = createTree().insert(1,4,3,5);
       tree4.remove(1);
       expect(tree4.contain(1)).toBeFalsy();
@@ -105,15 +103,5 @@ describe("Tree Tests",() => {
       expect(tree5.contain(2)).toBeFalsy();
       expect(tree5.rootNode.getKey()).toBe(2.5);
     });
-  });
-
-  it("should return the minimun value of one subtree",() => {
-    const newTree = createTree();
-    newTree.insert(11,12,2,20,4,37,1,37,12);
-    expect(minOf(newTree.rootNode).getKey()).toBe(1);
-    expect(minOf(newTree.rootNode.rightChild).getKey()).toBe(12);
-
-    const anotherTree = createTree().insert(1,-1);
-    expect(minOf(anotherTree.rootNode).getKey()).toBe(-1);
   });
 });
