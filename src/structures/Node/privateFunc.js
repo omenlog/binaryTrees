@@ -5,6 +5,13 @@ function setChild(parentNode, childrenSide, childrenNode) {
   return parentNode;
 }
 
+function parentSuccesor(nodeParent, node) {
+  return nodeParent !== undefined && nodeParent.rightChild === node
+    ? parentSuccesor(nodeParent.parentNode, nodeParent)
+    : nodeParent;
+}
+
 module.exports = {
-  setChild
+  setChild,
+  parentSuccesor
 };
