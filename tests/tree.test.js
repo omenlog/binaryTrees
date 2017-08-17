@@ -45,6 +45,18 @@ describe("Tree Tests",() => {
       expect(newTree.contain([5,6])).not.toBeFalsy();
     });
 
+    test("the tree is capable of find a node and return the node data or undefined if the node is not present",() => {
+      const newTree = createTree(2,1,3,-14,2.5,6,5,10);
+
+      const node3 = newTree.find(3);
+      expect(node3.getKey()).toBe(3);
+      expect(node3.leftChild.getKey()).toBe(2.5);
+      expect(node3.rightChild.getKey()).toBe(6);
+
+      const node9 = newTree.find(9);
+      expect(node9).toBeUndefined();
+    });
+
     test("the tree must be able to remove some node",() => {
 
       /* test case when the node deleted has 0 child */

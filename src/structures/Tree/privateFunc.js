@@ -10,7 +10,7 @@ function addNode(value, treeNode) {
 
 function findNode(value, rootNode) {
   if (rootNode === undefined) {
-    return null;
+    return undefined;
   } else {
     const nodeValue = rootNode.getKey();
     return nodeValue === value
