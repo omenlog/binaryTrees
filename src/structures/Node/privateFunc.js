@@ -11,7 +11,14 @@ function parentSuccesor(nodeParent, node) {
     : nodeParent;
 }
 
+function parentPredecesor(nodeParent, node) {
+  return nodeParent !== undefined && nodeParent.leftChild === node
+    ? parentPredecesor(nodeParent.parentNode, nodeParent)
+    : nodeParent;
+}
+
 module.exports = {
   setChild,
-  parentSuccesor
+  parentSuccesor,
+  parentPredecesor
 };

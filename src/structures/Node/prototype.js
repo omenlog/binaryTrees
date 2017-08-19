@@ -1,5 +1,5 @@
-const { minOf } = require("../Tree/privateFunc");
-const {parentSuccesor} = require('.privateFunc');
+const { minOf, maxOf } = require("../Tree/privateFunc");
+const { parentSuccesor, parentPredecesor } = require("./privateFunc");
 
 const nodePrototype = {
   hasChildrens() {
@@ -15,6 +15,11 @@ const nodePrototype = {
     return this.rightChild
       ? minOf(this.rightChild)
       : parentSuccesor(this.parentNode, this);
+  },
+  predecesor() {
+    return this.leftChild
+      ? maxOf(this.leftChild)
+      : parentPredecesor(this.parentNode, this);
   },
   childrens() {
     const { leftChild, rightChild } = this;
