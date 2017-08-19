@@ -27,6 +27,12 @@ function minOf(rootNode) {
     : minOf(rootNode.leftChild);
 }
 
+function maxOf(rootNode) {
+  return rootNode.rightChild === undefined
+    ? rootNode
+    : maxOf(rootNode.rightChild);
+}
+
 function removeFrom(tree, node) {
   if (!node.hasChildrens()) {
     replaceIn(tree, node, undefined);
@@ -62,7 +68,7 @@ function replaceIn(tree, oldNode, newNode) {
   }
 }
 
-function insertListIn(tree,args){
+function insertListIn(tree, args) {
   args.forEach(arg => tree.add(arg));
   return tree;
 }
@@ -71,6 +77,7 @@ module.exports = {
   removeFrom,
   addNode,
   minOf,
+  maxOf,
   findNode,
   insertListIn
 };
