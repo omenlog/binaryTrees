@@ -69,7 +69,10 @@ function replaceIn(tree, oldNode, newNode) {
 }
 
 function insertListIn(tree, args) {
-  args.forEach(arg => tree.add(arg));
+  args.forEach(arg => {
+    tree.rootNode === undefined ? tree.setRootNodeWith(arg) : addNode(arg, tree.rootNode);
+  });
+
   return tree;
 }
 
