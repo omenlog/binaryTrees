@@ -5,9 +5,7 @@ function createEmptyTree() {
 }
 
 function createNewTreeWith(args) {
-  const newTree = createEmptyTree();
-  args.forEach(arg => newTree.insert(arg));
-  return newTree;
+  return createEmptyTree().insert(args);
 }
 
 function createTree(...args) {
