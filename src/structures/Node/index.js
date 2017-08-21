@@ -1,6 +1,8 @@
 const Node = require("./prototype");
 const {setChild} = require('./privateFunc');
 
+// TODO: allow node apply one function using map to node values
+
 function createNode(newKey = 0) {
   let key = newKey;
   return Object.assign(Object.create(Node), {
