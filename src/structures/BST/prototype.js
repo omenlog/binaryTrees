@@ -31,6 +31,10 @@ const treePrototype = {
   max() {
     const { rootNode } = this;
     return rootNode === undefined ? undefined : maxOf(rootNode);
+  },
+  min(){
+    const { rootNode } = this;
+    return rootNode === undefined ? undefined : minOf(rootNode);
   }
 };
 

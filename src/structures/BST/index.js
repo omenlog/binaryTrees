@@ -2,7 +2,6 @@ const Tree = require("./prototype");
 
 // TODO: Implement error handling in every tree feature
 // TODO: Implement map function in the tree
-// TODO: Implement min function that return the min value in the tree
 // TODO: Implement filter function in the tree
 // TODO: Implement reduce function in the tree
 
