@@ -115,5 +115,13 @@ describe("Tree Tests",() => {
       expect(tree5.contain(2)).toBeFalsy();
       expect(tree5.rootNode.getKey()).toBe(2.5);
     });
+
+    test("the tree must be capable of return the node with the max value in the tree or undefined if it's and empty tree",() => {
+      const newTree = createBST();
+      expect(newTree.max()).toBeUndefined();
+
+      newTree.insert(12.3,23,1,4,-23,34,1000,7,0,43);
+      expect(newTree.max().getKey()).toBe(1000);
+    });
   });
 });
