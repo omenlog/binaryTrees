@@ -1,5 +1,5 @@
 describe("Tree Tests",() => {
-  const {createBST} = require('structures/Tree');
+  const {createBST} = require('structures/BST');
 
   it("should export a createBST function",() => {
     expect(createBST).toBeDefined();

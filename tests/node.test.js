@@ -1,6 +1,6 @@
 describe("Node Tests", () => {
   const { createNode } = require("structures/Node");
-  const { createBST } = require("structures/Tree");
+  const { createBST } = require("structures/BST");
 
   it("should export a createNode function", () => {
     expect(createNode).toBeDefined();

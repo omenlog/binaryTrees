@@ -1,5 +1,6 @@
 const Tree = require("./prototype");
 
+// TODO: Implement error handling in every tree feature
 // TODO: Implement map function in the tree
 // TODO: Implement max function that return the max value in the tree
 // TODO: Implement min function that return the min value in the tree

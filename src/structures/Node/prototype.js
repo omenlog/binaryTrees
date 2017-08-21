@@ -1,4 +1,4 @@
-const { minOf, maxOf } = require("../Tree/privateFunc");
+const { minOf, maxOf } = require("../BST/privateFunc");
 const { parentSuccesor, parentPredecesor } = require("./privateFunc");
 
 const nodePrototype = {
