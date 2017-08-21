@@ -1,30 +1,30 @@
 describe("Tree Tests",() => {
-  const {createTree} = require('structures/Tree');
+  const {createBST} = require('structures/Tree');
 
-  it("should export a createTree function",() => {
-    expect(createTree).toBeDefined();
+  it("should export a createBST function",() => {
+    expect(createBST).toBeDefined();
   });
 
-  describe("createTree function",() => {
+  describe("createBST function",() => {
 
     it("should create a new tree and empty tree with the rootNode property 'undefined' when no argument is passed to factory function",() => {
-      const newTree = createTree();
+      const newTree = createBST();
       expect(newTree).toMatchObject({rootNode: undefined});
     });
 
     it("should create a new tree with nodes initialized if values are pased as argument to factory function", () => {
-      const newTree = createTree(1);
+      const newTree = createBST(1);
       expect(newTree.contain(1)).not.toBeNull();
 
-      const anotherTree = createTree(2,3);
+      const anotherTree = createBST(2,3);
       expect(anotherTree.contain(2,3)).not.toBeNull();
 
-      const treeInitWithArray = createTree([4,5]);
+      const treeInitWithArray = createBST([4,5]);
       expect(treeInitWithArray.contain([4,5])).not.toBeFalsy();
     });
 
     test("the tree must be capable of add a new node or add several nodes in one single call to insert function",() => {
-      const newTree = createTree();
+      const newTree = createBST();
 
       newTree.insert(3);
       expect(newTree.contain(3)).not.toBeNull();
@@ -37,7 +37,7 @@ describe("Tree Tests",() => {
     });
 
     test("the tree is capable of check if one or several nodes are present or not, if the query is for many nodes the function return false just is one node is missing in the tree",() => {
-      const newTree = createTree();
+      const newTree = createBST();
       newTree.insert(1,2,3,4,5,6);
 
       expect(newTree.contain(1)).not.toBeFalsy();
@@ -46,7 +46,7 @@ describe("Tree Tests",() => {
     });
 
     test("the tree is capable of find a node and return the node data or undefined if the node is not present",() => {
-      const newTree = createTree(2,1,3,-14,2.5,6,5,10);
+      const newTree = createBST(2,1,3,-14,2.5,6,5,10);
 
       const node3 = newTree.find(3);
       expect(node3.getKey()).toBe(3);
@@ -61,7 +61,7 @@ describe("Tree Tests",() => {
 
       /* test case when the node deleted has 0 child */
 
-      const tree1 = createTree(2,3,1);
+      const tree1 = createBST(2,3,1);
 
       tree1.remove(1);
       expect(tree1.contain(1)).toBeFalsy();
@@ -77,26 +77,26 @@ describe("Tree Tests",() => {
 
       /* test case when the node removed has only one child */
 
-      const tree2 = createTree().insert(2,3,1,4)
+      const tree2 = createBST().insert(2,3,1,4)
       tree2.remove(3);
       expect(tree2.contain(3)).toBeFalsy();
       expect(tree2.rootNode.rightChild.getKey()).toBe(4);
 
-      const tree3 = createTree().insert(2,1,3,2.5,6,5)
+      const tree3 = createBST().insert(2,1,3,2.5,6,5)
       tree3.remove(6);
       expect(tree3.contain(6)).toBeFalsy();
       expect(tree3.rootNode.rightChild.rightChild.getKey()).toBe(5);
 
       expect(tree3.remove(234)).toEqual(tree3);
 
-      const tree4 = createTree().insert(1,4,3,5);
+      const tree4 = createBST().insert(1,4,3,5);
       tree4.remove(1);
       expect(tree4.contain(1)).toBeFalsy();
       expect(tree4.rootNode.getKey()).toBe(4);
 
       /* test cases when the node remove has two child */
 
-      const tree5 = createTree().insert(2,1,3,2.5,6,5);
+      const tree5 = createBST().insert(2,1,3,2.5,6,5);
 
       tree5.remove(3);
       expect(tree5.contain(3)).toBeFalsy();

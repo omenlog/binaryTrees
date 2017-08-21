@@ -1,6 +1,6 @@
 describe("Node Tests", () => {
   const { createNode } = require("structures/Node");
-  const { createTree } = require("structures/Tree");
+  const { createBST } = require("structures/Tree");
 
   it("should export a createNode function", () => {
     expect(createNode).toBeDefined();
@@ -73,7 +73,7 @@ describe("Node Tests", () => {
     });
 
     test("every node is capable of return is succesor or undefined if it store the greater value in the tree", () => {
-      const newTree = createTree(7, 1, 5, 10, -3, 4, 9, 0, 8, 3, 2.5, 2);
+      const newTree = createBST(7, 1, 5, 10, -3, 4, 9, 0, 8, 3, 2.5, 2);
 
       const node5 = newTree.find(5);
       expect(node5.succesor().getKey()).toBe(7);
@@ -89,7 +89,7 @@ describe("Node Tests", () => {
     });
 
     test("every node is capable of return is predecesor or undefined if it store the minimun value in the tree", () => {
-      const newTree = createTree(7, 1, 5, 10, -3, 4, 9, 0, 8, 3, 2.5, 2);
+      const newTree = createBST(7, 1, 5, 10, -3, 4, 9, 0, 8, 3, 2.5, 2);
 
       const node5 = newTree.find(5);
       expect(node5.predecesor().getKey()).toBe(4);
