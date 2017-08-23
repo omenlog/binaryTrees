@@ -1,3 +1,5 @@
+"use strict";
+
 const {
   findNode,
   insertListIn,
@@ -5,6 +7,7 @@ const {
   minOf,
   maxOf
 } = require("./privateFunc");
+
 const { createNode } = require("../Node");
 const { flat } = require("../../utils/tools");
 
@@ -32,9 +35,37 @@ const treePrototype = {
     const { rootNode } = this;
     return rootNode === undefined ? undefined : maxOf(rootNode);
   },
-  min(){
+  min() {
     const { rootNode } = this;
     return rootNode === undefined ? undefined : minOf(rootNode);
+  },
+  [Symbol.iterator]() {
+    return this.iterator();
+  },
+  iterator() {
+    let actualNode = this.min();
+
+    const changeActualNode = () =>
+      actualNode ? actualNode.succesor() : undefined;
+
+    const buildResult = () => {
+      ({ value: actualNode, done: actualNode === undefined });
+    };
+
+    return {
+      next() {
+        const iteratorResult = buildResult();
+        changeActualNode();
+        return iteratorResult;
+      },
+      return(v = undefined) {
+        actualNode = undefined;
+        return {
+          value: v,
+          done: true
+        };
+      }
+    };
   }
 };
 
