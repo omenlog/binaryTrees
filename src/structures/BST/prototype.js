@@ -45,12 +45,16 @@ const treePrototype = {
   iterator() {
     let actualNode = this.min();
 
-    const changeActualNode = () =>
-      actualNode ? actualNode.succesor() : undefined;
-
-    const buildResult = () => {
-      ({ value: actualNode, done: actualNode === undefined });
+    const changeActualNode = () => {
+      actualNode = actualNode ? actualNode.succesor() : undefined;
     };
+
+    const buildResult = () => ({
+      value: actualNode,
+      done: actualNode === undefined
+    });
+
+    /* returning the iterator constructed */
 
     return {
       next() {
