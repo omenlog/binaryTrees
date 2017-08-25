@@ -5,7 +5,8 @@ const {
   insertListIn,
   removeFrom,
   minOf,
-  maxOf
+  maxOf,
+  reduceTree
 } = require("./privateFunc");
 
 const { createNode } = require("../Node");
@@ -30,6 +31,14 @@ const treePrototype = {
   remove(arg) {
     const node = this.find(arg);
     return node !== undefined ? removeFrom(this, node) : this;
+  },
+  reduce(fn, initialAcc) {
+    const initialNode = this.min();
+    return this.rootNode === undefined
+      ? initialAcc
+      : !initialAcc
+        ? reduceTree(fn, initialNode.getKey(), initialNode.succesor())
+        : reduceTree(fn, initialAcc, initialNode);
   },
   max() {
     const { rootNode } = this;

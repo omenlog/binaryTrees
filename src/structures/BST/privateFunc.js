@@ -76,10 +76,17 @@ function insertListIn(tree, args) {
   return tree;
 }
 
+function reduceTree(fn, acc, treeNode){
+  return treeNode === undefined
+    ? acc
+    : reduceTree(fn, fn(acc, treeNode), treeNode.succesor());
+}
+
 module.exports = {
   removeFrom,
   addNode,
   minOf,
+  reduceTree,
   maxOf,
   findNode,
   insertListIn

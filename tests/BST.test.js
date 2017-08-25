@@ -145,7 +145,7 @@ describe("Tree Tests", () => {
 
       expect(it.next()).toMatchObject({ value: undefined, done: true });
       expect(it.next()).toMatchObject({ value: undefined, done: true });
- 
+
       let i = 1;
       for (let node of newTree) {
         expect(node.getKey()).toBe(i++);
@@ -164,5 +164,32 @@ describe("Tree Tests", () => {
       expect(it.return(10)).toMatchObject({value:10,done:true});
     });
 
+    test("the tree have a reduce method that allow reduce the tree to a single value, the tree is recorred using in order process",() => {
+      const newTree = createBST(4,1,2,5,3);
+
+      const sumTotal = newTree.reduce((acc,node) => {
+        return acc + node.getKey();
+      });
+
+      const productTotal = newTree.reduce((acc,node) => {
+        return acc*node.getKey();
+      });
+
+      const nodeString = newTree.reduce((acc,node) => {
+        return acc + node.getKey().toString();
+      });
+
+      expect(sumTotal).toBe(15);
+      expect(nodeString).toBe("12345");
+      expect(productTotal).toBe(120);
+
+      const emptyTree = createBST();
+
+      const finalValue = emptyTree.reduce((acc,val) => val);
+      const initialAcc = emptyTree.reduce((acc,val) => val,10);
+
+      expect(finalValue).toBeUndefined();
+      expect(initialAcc).toBe(10);
+    });
   });
 });
