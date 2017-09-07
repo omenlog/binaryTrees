@@ -28,22 +28,23 @@ describe("Tree Tests", () => {
       const newTree = createBST();
 
       newTree.insert(3);
-      expect(newTree.contain(3)).not.toBeNull();
+      expect(newTree.contain(3)).toBeTruthy();
 
       newTree.insert(2, 4);
-      expect(newTree.contain([2, 4])).not.toBeNull();
+      expect(newTree.contain([2, 4])).toBeTruthy();
 
       newTree.insert([1, 5]);
-      expect(newTree.contain(1, 5)).not.toBeNull();
+      expect(newTree.contain(1, 5)).toBeTruthy();
     });
 
     test("the tree is capable of check if one or several nodes are present or not, if the query is for many nodes the function return false just is one node is missing in the tree", () => {
       const newTree = createBST();
       newTree.insert(1, 2, 3, 4, 5, 6);
 
-      expect(newTree.contain(1)).not.toBeFalsy();
-      expect(newTree.contain(2, 3, 4)).not.toBeFalsy();
-      expect(newTree.contain([5, 6])).not.toBeFalsy();
+      expect(newTree.contain(1)).toBeTruthy();
+      expect(newTree.contain(2, 3, 4)).toBeTruthy();
+      expect(newTree.contain([5, 6])).toBeTruthy();
+      expect(newTree.contain(10)).toBeFalsy();
     });
 
     test("the tree is capable of find a node and return the node data or undefined if the node is not present", () => {

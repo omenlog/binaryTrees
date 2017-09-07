@@ -7,7 +7,7 @@ function addNode(value, treeNode) {
       ? treeNode.insertChild(value)
       : addNode(value, treeNode.rightChild);
 }
-
+ 
 function findNode(value, rootNode) {
   if (rootNode === undefined) {
     return undefined;
