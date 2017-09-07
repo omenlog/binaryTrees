@@ -1,7 +1,6 @@
 const Node = require("./prototype");
 const {setChild} = require('./privateFunc');
 
-// TODO: allow node apply one function using map to node values
 // TODO: Implement error handling in every node feature
 
 function createNode(newKey = 0) {
