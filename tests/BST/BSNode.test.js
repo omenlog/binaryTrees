@@ -1,13 +1,13 @@
-describe("Node Tests", () => {
-  const { createNode } = require("structures/Node");
-  const { createBST } = require("structures/BST");
+describe('Node Tests', () => {
+  const { createNode } = require('structures/Node');
+  const { createBST } = require('structures/BST');
 
-  it("should export a createNode function", () => {
+  it('should export a createNode function', () => {
     expect(createNode).toBeDefined();
-  });
+  })
 
-  describe("createNode function", () => {
-    it("should create a new node with leftChild,rightChild and parentNode equal to undefined", () => {
+  describe('createNode function', () => {
+    it('should create a new node with leftChild,rightChild and parentNode equal to undefined', () => {
       const newNode = createNode();
       expect(newNode).toMatchObject({
         leftChild: undefined,
@@ -16,23 +16,23 @@ describe("Node Tests", () => {
       });
     });
 
-    it("should create a new node with the 'key' property private", () => {
+    it('should create a new node with the key property private', () => {
       const newNode = createNode();
-      expect(newNode.hasOwnProperty("key")).toBeFalsy();
+      expect(newNode.hasOwnProperty('key')).toBeFalsy();
     });
 
-    it("should setup the 'key' property equal to 0 by default", () => {
+    it('should setup the key property equal to 0 by default', () => {
       const newNode = createNode();
       expect(newNode.getKey()).toBe(0);
     });
 
-    it("should config getter and setter for the key property", () => {
+    it('should config getter and setter for the key property', () => {
       const newNode = createNode();
       newNode.setKey(10);
       expect(newNode.getKey()).toBe(10);
     });
 
-    test("every node is capable of setup correctly its children without specific the child side", () => {
+    test('every node is capable of setup correctly its children without specific the child side', () => {
       const newNode = createNode(2);
       newNode.insertChild(1);
       newNode.insertChild(3);
@@ -40,14 +40,14 @@ describe("Node Tests", () => {
       expect(newNode.rightChild.getKey()).toBe(3);
     });
 
-    test("every node is capable of tell if it has some children", () => {
+    test('every node is capable of tell if it has some children', () => {
       const newNode = createNode(10);
       expect(newNode.hasChildrens()).toBeFalsy();
       newNode.insertChild(20);
       expect(newNode.hasChildrens()).toBeTruthy();
     });
 
-    test("every node is capable of return its childrens", () => {
+    test('every node is capable of return its childrens', () => {
       const newNode = createNode();
       expect(newNode.childrens()).toMatchObject({
         leftChild: undefined,
@@ -55,7 +55,7 @@ describe("Node Tests", () => {
       });
     });
 
-    test("every node is capable of take a value and setup this as one of its childrens", () => {
+    test('every node is capable of take a value and setup this as one of its childrens', () => {
       const newNode = createNode(10);
       newNode.insertChild(20);
       newNode.insertChild(5);
@@ -63,7 +63,7 @@ describe("Node Tests", () => {
       expect(newNode.rightChild.getKey()).toBe(20);
     });
 
-    test("every node is capable of say if it have almost one child", () => {
+    test('every node is capable of say if it have almost one child', () => {
       const newNode = createNode(2).insertChild(1);
       expect(newNode.hasOneChild()).toBeTruthy();
       newNode.insertChild(3);
@@ -72,7 +72,7 @@ describe("Node Tests", () => {
       expect(anotherNode.hasOneChild()).toBeFalsy();
     });
 
-    test("every node is capable of return is succesor or undefined if it store the greater value in the tree", () => {
+    test('every node is capable of return is succesor or undefined if it store the greater value in the tree', () => {
       const newTree = createBST(7, 1, 5, 10, -3, 4, 9, 0, 8, 3, 2.5, 2);
 
       const node5 = newTree.find(5);
@@ -88,7 +88,7 @@ describe("Node Tests", () => {
       expect(node10.succesor()).toBeUndefined();
     });
 
-    test("every node is capable of return is predecesor or undefined if it store the minimun value in the tree", () => {
+    test('every node is capable of return is predecesor or undefined if it store the minimun value in the tree', () => {
       const newTree = createBST(7, 1, 5, 10, -3, 4, 9, 0, 8, 3, 2.5, 2);
 
       const node5 = newTree.find(5);
