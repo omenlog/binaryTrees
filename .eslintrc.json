@@ -6,6 +6,7 @@
     },
     "extends": ["eslint:recommended"],
     "rules": {
+        "quotes": ["error", "single", { "avoidEscape": true }],
         "eqeqeq": "error",
         "no-console": "warn",
         "no-var": "error",
