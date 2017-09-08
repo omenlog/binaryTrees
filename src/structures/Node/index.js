@@ -1,4 +1,4 @@
-const Node = require("./prototype");
+const Node = require('./prototype');
 const {setChild} = require('./privateFunc');
 
 // TODO: Implement error handling in every node feature
@@ -14,8 +14,8 @@ function createNode(newKey = 0) {
     },
     insertChild(value) {
       return value < this.getKey()
-        ? setChild(this,"LEFT",createNode(value))
-        : setChild(this,"RIGHT",createNode(value));
+        ? setChild(this,'LEFT',createNode(value))
+        : setChild(this,'RIGHT',createNode(value));
     },
     leftChild: undefined,
     rightChild: undefined,
