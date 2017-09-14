@@ -1,9 +1,11 @@
 const Node = require('./prototype');
 const {setChild} = require('./privateFunc');
+const {missingNodeValue} = require('./errors');
+const {launch} = require('../../utils/tools');
 
 // TODO: Implement error handling in every node feature
 
-function createNode(newKey = 0) {
+function createNode(newKey = launch(missingNodeValue)) {
   let key = newKey;
   return Object.assign(Object.create(Node), {
     getKey() {
