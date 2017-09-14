@@ -8,7 +8,7 @@ describe('Node Tests', () => {
 
   describe('createNode function', () => {
     it('should create a new node with leftChild,rightChild and parentNode equal to undefined', () => {
-      const newNode = createNode();
+      const newNode = createNode(1);
       expect(newNode).toMatchObject({
         leftChild: undefined,
         rightChild: undefined,
@@ -17,17 +17,17 @@ describe('Node Tests', () => {
     });
 
     it('should create a new node with the key property private', () => {
-      const newNode = createNode();
+      const newNode = createNode(10);
       expect(newNode.hasOwnProperty('key')).toBeFalsy();
     });
 
-    it('should setup the key property equal to 0 by default', () => {
-      const newNode = createNode();
-      expect(newNode.getKey()).toBe(0);
+    it('should throw a new exception when no parameter are passed to createNode',() => {
+      const {missingNodeValue} = require('structures/Node/errors');
+      expect(createNode).toThrowError(missingNodeValue);
     });
 
     it('should config getter and setter for the key property', () => {
-      const newNode = createNode();
+      const newNode = createNode(5);
       newNode.setKey(10);
       expect(newNode.getKey()).toBe(10);
     });
@@ -48,7 +48,7 @@ describe('Node Tests', () => {
     });
 
     test('every node is capable of return its childrens', () => {
-      const newNode = createNode();
+      const newNode = createNode(12);
       expect(newNode.childrens()).toMatchObject({
         leftChild: undefined,
         rightChild: undefined
