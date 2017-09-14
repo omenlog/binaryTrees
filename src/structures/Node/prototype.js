@@ -1,5 +1,5 @@
-const { minOf, maxOf } = require("../BST/privateFunc");
-const { parentSuccesor, parentPredecesor } = require("./privateFunc");
+const { minOf, maxOf } = require('../BST/privateFunc');
+const { parentSuccesor, parentPredecesor } = require('./privateFunc');
 
 const nodePrototype = {
   hasChildrens() {
