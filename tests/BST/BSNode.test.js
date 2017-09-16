@@ -103,5 +103,15 @@ describe('Node Tests', () => {
       const node10 = newTree.find(-3);
       expect(node10.predecesor()).toBeUndefined();
     });
+
+    test('every node is capable to tell if it is a leftChild',() => {
+      const newTree = createBST(7,1,10);
+
+      const node1 = newTree.find(1);
+      const node10 = newTree.find(10);
+      
+      expect(node1.isALeftChild()).toBe(true);
+      expect(node10.isALeftChild()).toBe(false);
+    });
   });
 });
