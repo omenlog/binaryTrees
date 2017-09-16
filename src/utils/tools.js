@@ -14,7 +14,6 @@ function buildError(errorName, errorMessage) {
     this.stack = new Error().stack;
   };
 
-  errorFunction.name = 'errorFunction';
   errorFunction.prototype = Object.create(Error.prototype);
   errorFunction.prototype.constructor = errorFunction;
 
