@@ -24,6 +24,9 @@ const nodePrototype = {
   childrens() {
     const { leftChild, rightChild } = this;
     return { leftChild, rightChild };
+  },
+  isALeftChild() {
+    return this.parentNode.leftChild === this;
   }
 };
 
