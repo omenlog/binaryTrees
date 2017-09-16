@@ -1,10 +1,10 @@
-const { createNode } = require('../Node');
+const {buildNodePrototype} = require('./privateFunc');
 
 function createRBNode(key, nodeColor = 'BLACK') {
-  const newNode = createNode(key);
+  const rbNode = buildNodePrototype(key);
   let color = nodeColor;
 
-  return Object.assign(Object.create(newNode), {
+  return Object.assign(Object.create(rbNode), {
     getColor() {
       return color;
     },
