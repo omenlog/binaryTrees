@@ -62,6 +62,24 @@ describe('test for Red Black Tree Nodes',() => {
 
       expect(node17.leftChild.getKey()).toBe(14);
       expect(node17.rightChild.getKey()).toBe(19);
+
+      /* creating another tree for tests purpose */
+      const node2 = createRBNode(2, 'BLACK');
+      const node1 = createRBNode(1, 'BLACK');
+      const node3 = createRBNode(3, 'BLACK');
+
+      /* setup node links */
+      node2.leftChild = node1;
+      node1.parentNode = node2;
+      node2.rightChild = node3;
+      node3.parentNode = node2;
+
+      node2.rotateToLeft();
+
+      expect(node3.parentNode).toBeUndefined();
+      expect(node3.leftChild.getKey()).toBe(2);
+      expect(node2.parentNode.getKey()).toBe(3);
+      expect(node2.leftChild.getKey()).toBe(1);
     });
   });
 });

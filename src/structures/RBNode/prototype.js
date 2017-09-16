@@ -1,15 +1,18 @@
 const rbNodePrototype = {
-  rotateToLeft(){
+  rotateToLeft() {
     const nodeRightChild = this.rightChild;
     const nodeLeftGrandChild = nodeRightChild.leftChild;
 
     this.rightChild = nodeLeftGrandChild;
 
-    if(nodeLeftGrandChild !== undefined)
+    if (nodeLeftGrandChild !== undefined){
       nodeLeftGrandChild.parentNode = this;
+    }
 
-    const nodeSide = this.isALeftChild() ? 'leftChild':'rightChild';
-    this.parentNode[nodeSide] = nodeRightChild;
+    if (this.parentNode !== undefined) {
+      const nodeSide = this.isALeftChild() ? 'leftChild' : 'rightChild';
+      this.parentNode[nodeSide] = nodeRightChild;
+    }
 
     nodeRightChild.parentNode = this.parentNode;
 
