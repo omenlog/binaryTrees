@@ -4,6 +4,7 @@ const {missingNodeValue} = require('./errors');
 const {launch} = require('../../utils/tools');
 
 // TODO: Implement error handling in every node feature
+// TODO: Change insertChild feature to be receive a new node Object as a new child
 
 function createNode(newKey = launch(missingNodeValue)) {
   let key = newKey;
