@@ -25,6 +25,26 @@ const rbNodePrototype = {
       nodeRightChild.leftChild = this;
       this.parentNode = nodeRightChild;
     }
+  },
+  rotateToRight(){
+    const nodeLeftChild = this.leftChild;
+    const nodeRightGrandChild = nodeLeftChild.rightChild;
+
+    this.leftChild = nodeRightGrandChild;
+    
+    if(nodeRightGrandChild !== undefined){
+      nodeRightGrandChild.parentNode = this;
+    }
+
+    if(this.parentNode !== undefined){
+      const nodeSide = this.isALeftChild() ? 'leftChild' : 'rightChild';
+      this.parentNode[nodeSide] = nodeLeftChild;
+    }
+
+    nodeLeftChild.rightChild = this;
+
+    nodeLeftChild.parentNode = this.parentNode;
+    this.parentNode = nodeLeftChild;
   }
 };
 
