@@ -21,15 +21,20 @@ describe('test for Red Black Tree Nodes',() => {
       const blackNode = createRBNode(12,'BLACK');
       expect(blackNode.getColor()).toBe('BLACK');
     });
+  });
 
-    test('every new node created must be capable to make a left rotation over it in the tree',() => {
+  describe('test for rotations of nodes',() => {
+    test('every new node created must be capable to make a left rotation over it in the tree and the right rotation as well',() => {
       /* creating tree nodes*/
 
       const node26 = createRBNode(26, 'BLACK');
       const rootNode = node26;
 
       const node17 = createRBNode(17, 'RED');
+      const node10 = createRBNode(10, 'RED');
+      const node15 = createRBNode(15, 'RED');
       const node14 = createRBNode(14, 'BLACK');
+      const node16 = createRBNode(16, 'BLACK');
       const node21 = createRBNode(21, 'BLACK');
       const node19 = createRBNode(19, 'BLACK');
       const node23 = createRBNode(23, 'BLACK');
@@ -43,6 +48,14 @@ describe('test for Red Black Tree Nodes',() => {
       node17.rightChild = node21;
 
       node14.parentNode = node17;
+      node14.rightChild = node16;
+      node14.leftChild = node10;
+
+      node10.parentNode = node14;
+      node16.parentNode = node14;
+
+      node16.leftChild = node15;
+      node15.parentNode = node16;
 
       node21.parentNode = node17;
       node21.leftChild = node19;
@@ -62,6 +75,16 @@ describe('test for Red Black Tree Nodes',() => {
 
       expect(node17.leftChild.getKey()).toBe(14);
       expect(node17.rightChild.getKey()).toBe(19);
+
+      /* now making the right rotation over node17 */
+      node17.rotateToRight();
+
+      /* after the rotation */
+      expect(node26.leftChild.getKey()).toBe(17);
+      
+      expect(node17.rightChild.getKey()).toBe(21);
+
+      expect(node21.leftChild.getKey()).toBe(19);
 
       /* creating another tree for tests purpose */
       const node2 = createRBNode(2, 'BLACK');
@@ -85,7 +108,7 @@ describe('test for Red Black Tree Nodes',() => {
     test('if one node cannot rotate to left because it has not right child then one exception must be throw',() => {
       const node1 = createRBNode(1, 'BLACK');
       const {unableToMakeLeftRotation} = require('structures/RBNode/errors');
-      expect(node1.rotateToLeft).toThrowError(unableToMakeLeftRotation); 
+      expect(node1.rotateToLeft).toThrowError(unableToMakeLeftRotation);
     });
   });
 });
