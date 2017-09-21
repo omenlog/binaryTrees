@@ -1,13 +1,13 @@
-function addNode(value, treeNode) {
-  return treeNode.getKey() > value
+function addNode(newNode, treeNode) {
+  return treeNode.getKey() > newNode.getKey()
     ? treeNode.leftChild === undefined
-      ? treeNode.insertChild(value)
-      : addNode(value, treeNode.leftChild)
+      ? treeNode.insertChild(newNode)
+      : addNode(newNode, treeNode.leftChild)
     : treeNode.rightChild === undefined
-      ? treeNode.insertChild(value)
-      : addNode(value, treeNode.rightChild);
+      ? treeNode.insertChild(newNode)
+      : addNode(newNode, treeNode.rightChild);
 }
- 
+
 function findNode(value, rootNode) {
   if (rootNode === undefined) {
     return undefined;
