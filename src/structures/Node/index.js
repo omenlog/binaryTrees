@@ -6,7 +6,7 @@ const {missingNodeValue} = require('./errors');
 const {launch} = require('../../utils/tools');
 
 // TODO: Implement error handling in every node feature
-// TODO: Change insertChild feature to be receive a new node Object as a new child
+// TODO: implement setLeftChild and setRightChild function as node private functions
 
 function createNode(newKey = launch(missingNodeValue)) {
   let key = newKey;
@@ -17,15 +17,8 @@ function createNode(newKey = launch(missingNodeValue)) {
     setKey(k) {
       key = k;
     },
-    insertChild(nodeChild) {
-      let newNode;
-      if(nodeChild.getKey === undefined){
-        newNode = createNode(nodeChild);
-      }
-      else{
-        newNode = nodeChild;
-      }
-
+    insertChild(arg) {
+      const newNode = isANodeThis(arg) ? arg : createNode(arg);
       return newNode.getKey() < this.getKey()
         ? setChild(this,'LEFT',newNode)
         : setChild(this,'RIGHT',newNode);
@@ -36,6 +29,11 @@ function createNode(newKey = launch(missingNodeValue)) {
   });
 }
 
+const isANodeThis = arg => {
+  return typeof arg === 'object' && Node.isPrototypeOf(arg);
+};
+
 module.exports = {
-  createNode
+  createNode,
+  isANodeThis
 };
