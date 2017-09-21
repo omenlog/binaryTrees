@@ -109,7 +109,7 @@ describe('Node Tests', () => {
 
       const node1 = newTree.find(1);
       const node10 = newTree.find(10);
-      
+
       expect(node1.isALeftChild()).toBe(true);
       expect(node10.isALeftChild()).toBe(false);
     });
