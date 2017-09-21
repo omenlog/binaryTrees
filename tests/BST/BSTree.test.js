@@ -2,6 +2,7 @@
 
 describe('Tree Tests', () => {
   const { createBST } = require('structures/BST');
+  const {createNode} = require('structures/Node');
 
   it('should export a createBST function', () => {
     expect(createBST).toBeDefined();
@@ -35,6 +36,27 @@ describe('Tree Tests', () => {
 
       newTree.insert([1, 5]);
       expect(newTree.contain(1, 5)).toBeTruthy();
+    });
+
+    test('the tree must be able to add a new node passing as parameter to insert function',() => {
+      const newTree = createBST(3,5,18,6);
+      const newNode = createNode(10);
+
+      expect(newTree.contain(10)).toBeFalsy();
+      newTree.insert(newNode);
+      expect(newTree.contain(10)).toBeTruthy();
+    });
+
+    test('the tree is capable to insert new values and node objects at the same time in the same call',() => {
+      const newTree = createBST();
+      const node10 = createNode(10);
+      const node5 = createNode(5);
+      newTree.insert(node5,3,node10,1);
+
+      expect(newTree.contain(1)).toBeTruthy();
+      expect(newTree.contain(10)).toBeTruthy();
+      expect(newTree.contain(3)).toBeTruthy();
+      expect(newTree.contain(5)).toBeTruthy();
     });
 
     test('the tree is capable of check if one or several nodes are present or not, if the query is for many nodes the function return false just is one node is missing in the tree', () => {

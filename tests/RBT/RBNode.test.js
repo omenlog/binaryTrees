@@ -1,3 +1,5 @@
+'use strict';
+
 describe('test for Red Black Tree Nodes',() => {
   const {createRBNode} = require('structures/RBNode');
 
