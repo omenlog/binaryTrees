@@ -1,23 +1,41 @@
-"use strict";
+'use strict';
+
+/* importing modules */
 
 const {
   findNode,
-  insertListIn,
   removeFrom,
   minOf,
+  insertIn,
   maxOf,
   reduceTree
-} = require("./privateFunc");
+} = require('./privateFunc');
 
-const { createNode } = require("../Node");
-const { flat } = require("../../utils/tools");
+const { createNode } = require('../Node');
+const nodePrototype = require('../Node/prototype');
+const { flat } = require('../../utils/tools');
+
+/* small auxiliar functions used in the tree prototype */
+const isANodeThis = arg => {
+  return typeof arg === 'object' && nodePrototype.isPrototypeOf(arg);
+};
+
+const createNodes = arg => {
+  return isANodeThis(arg) ? arg : createNode(arg);
+};
+
+/* defining tree prototype */
 
 const treePrototype = {
-  setRootNodeWith(value) {
-    this.rootNode = createNode(value);
+  setRootNodeWith(newNode) {
+    this.rootNode = newNode;
   },
   insert(...args) {
-    return insertListIn(this, flat(args));
+    flat(args)
+      .map(createNodes)
+      .forEach(newNode => insertIn(this, newNode));
+
+    return this;
   },
   contain(...args) {
     const nodes = flat(args).map(arg => findNode(arg, this.rootNode));
