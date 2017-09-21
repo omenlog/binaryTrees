@@ -1,3 +1,5 @@
+'use strict';
+
 function addNode(newNode, treeNode) {
   return treeNode.getKey() > newNode.getKey()
     ? treeNode.leftChild === undefined
@@ -68,15 +70,14 @@ function replaceIn(tree, oldNode, newNode) {
   }
 }
 
-function insertListIn(tree, args) {
-  args.forEach(arg => {
-    tree.rootNode === undefined ? tree.setRootNodeWith(arg) : addNode(arg, tree.rootNode);
-  });
-
+function insertIn(tree, newNode) {
+  tree.rootNode === undefined
+    ? tree.setRootNodeWith(newNode)
+    : addNode(newNode, tree.rootNode);
   return tree;
 }
 
-function reduceTree(fn, acc, treeNode){
+function reduceTree(fn, acc, treeNode) {
   return treeNode === undefined
     ? acc
     : reduceTree(fn, fn(acc, treeNode), treeNode.succesor());
@@ -89,5 +90,5 @@ module.exports = {
   reduceTree,
   maxOf,
   findNode,
-  insertListIn
+  insertIn
 };
