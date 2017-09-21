@@ -1,3 +1,5 @@
+'use strict';
+
 const Node = require('./prototype');
 const {setChild} = require('./privateFunc');
 const {missingNodeValue} = require('./errors');
@@ -15,10 +17,18 @@ function createNode(newKey = launch(missingNodeValue)) {
     setKey(k) {
       key = k;
     },
-    insertChild(value) {
-      return value < this.getKey()
-        ? setChild(this,'LEFT',createNode(value))
-        : setChild(this,'RIGHT',createNode(value));
+    insertChild(nodeChild) {
+      let newNode;
+      if(nodeChild.getKey === undefined){
+        newNode = createNode(nodeChild);
+      }
+      else{
+        newNode = nodeChild;
+      }
+
+      return newNode.getKey() < this.getKey()
+        ? setChild(this,'LEFT',newNode)
+        : setChild(this,'RIGHT',newNode);
     },
     leftChild: undefined,
     rightChild: undefined,

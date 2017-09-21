@@ -1,3 +1,5 @@
+'use strict';
+
 const { minOf, maxOf } = require('../BST/privateFunc');
 const { parentSuccesor, parentPredecesor } = require('./privateFunc');
 
