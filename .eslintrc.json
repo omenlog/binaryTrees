@@ -10,6 +10,7 @@
         "eqeqeq": "error",
         "no-console": "warn",
         "no-var": "error",
+        "strict": "error",
         "camelcase": "error"
     }
 }
