@@ -11,14 +11,11 @@ const {
   reduceTree
 } = require('./privateFunc');
 
-const { createNode } = require('../Node');
-const nodePrototype = require('../Node/prototype');
+const { createNode, isANodeThis } = require('../Node');
 const { flat } = require('../../utils/tools');
 
 /* small auxiliar functions used in the tree prototype */
-const isANodeThis = arg => {
-  return typeof arg === 'object' && nodePrototype.isPrototypeOf(arg);
-};
+
 
 const createNodes = arg => {
   return isANodeThis(arg) ? arg : createNode(arg);
