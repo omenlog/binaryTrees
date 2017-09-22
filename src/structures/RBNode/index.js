@@ -1,3 +1,5 @@
+'use strict';
+
 const {buildNodePrototype} = require('./privateFunc');
 
 function createRBNode(key, nodeColor = 'BLACK') {

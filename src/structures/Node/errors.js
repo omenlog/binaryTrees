@@ -1,3 +1,5 @@
+'use strict';
+
 const {buildError} = require('../../utils/tools');
 
 /* Errors available for node structure */

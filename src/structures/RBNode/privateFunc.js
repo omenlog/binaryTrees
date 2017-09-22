@@ -1,3 +1,5 @@
+'use strict';
+
 const rbNodePrototype = require('./prototype');
 const {createNode} = require('../Node/index');
 

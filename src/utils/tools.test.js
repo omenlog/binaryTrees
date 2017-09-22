@@ -1,3 +1,5 @@
+'use strict';
+
 const { flat } = require("utils/tools");
 
 describe("Generic Tools Tests", () => {

@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Node Tests', () => {
   const { createNode } = require('structures/Node');
   const { createBST } = require('structures/BST');
