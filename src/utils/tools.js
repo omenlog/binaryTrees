@@ -1,3 +1,5 @@
+'use strict';
+
 function flatReducer(flatArray, arg) {
   return Array.isArray(arg) ? flatArray.concat(flat(arg)) : flatArray.concat(arg);
 }
@@ -6,7 +8,7 @@ function flat(args) {
   return args.reduce(flatReducer, []);
 }
 
-/* function to build another error functions*/
+/* function to build another error functions */
 function buildError(errorName, errorMessage) {
   const errorFunction = function errorFunction() {
     this.name = errorName;
