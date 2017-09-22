@@ -1,5 +1,10 @@
+'use strict';
+
 const { launch } = require('../../utils/tools');
-const { unableToMakeLeftRotation } = require('./errors');
+const {
+  unableToMakeLeftRotation,
+  unableToMakeRightRotation
+} = require('./errors');
 
 const rbNodePrototype = {
   rotateToLeft() {
@@ -26,25 +31,29 @@ const rbNodePrototype = {
       this.parentNode = nodeRightChild;
     }
   },
-  rotateToRight(){
-    const nodeLeftChild = this.leftChild;
-    const nodeRightGrandChild = nodeLeftChild.rightChild;
+  rotateToRight() {
+    if (this.leftChild === undefined) {
+      launch(unableToMakeRightRotation);
+    } else {
+      const nodeLeftChild = this.leftChild;
+      const nodeRightGrandChild = nodeLeftChild.rightChild;
 
-    this.leftChild = nodeRightGrandChild;
-    
-    if(nodeRightGrandChild !== undefined){
-      nodeRightGrandChild.parentNode = this;
+      this.leftChild = nodeRightGrandChild;
+
+      if (nodeRightGrandChild !== undefined) {
+        nodeRightGrandChild.parentNode = this;
+      }
+
+      if (this.parentNode !== undefined) {
+        const nodeSide = this.isALeftChild() ? 'leftChild' : 'rightChild';
+        this.parentNode[nodeSide] = nodeLeftChild;
+      }
+
+      nodeLeftChild.rightChild = this;
+
+      nodeLeftChild.parentNode = this.parentNode;
+      this.parentNode = nodeLeftChild;
     }
-
-    if(this.parentNode !== undefined){
-      const nodeSide = this.isALeftChild() ? 'leftChild' : 'rightChild';
-      this.parentNode[nodeSide] = nodeLeftChild;
-    }
-
-    nodeLeftChild.rightChild = this;
-
-    nodeLeftChild.parentNode = this.parentNode;
-    this.parentNode = nodeLeftChild;
   }
 };
 

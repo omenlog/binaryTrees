@@ -145,7 +145,14 @@ describe('test for Red Black Tree Nodes',() => {
     test('if one node cannot rotate to left because it has not right child then one exception must be throw',() => {
       const node1 = createRBNode(1, 'BLACK');
       const {unableToMakeLeftRotation} = require('structures/RBNode/errors');
-      expect(node1.rotateToLeft).toThrowError(unableToMakeLeftRotation);
+      expect(() => node1.rotateToLeft()).toThrowError(unableToMakeLeftRotation);
+    });
+
+    test('if a node cannot rotate to the right because it has not left children then one exception must be throw',() => {
+      const node = createRBNode(1,'BLACK');
+      const {unableToMakeRightRotation} = require('structures/RBNode/errors');
+      expect(unableToMakeRightRotation).toBeDefined();
+      expect(() => node.rotateToRight()).toThrowError(unableToMakeRightRotation);
     });
   });
 });
