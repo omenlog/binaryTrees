@@ -6,7 +6,7 @@ const {missingNodeValue} = require('./errors');
 const {launch} = require('../../utils/tools');
 
 // TODO: Implement error handling in every node feature
-// TODO: implement setLeftChild and setRightChild function as node private functions
+// TODO: Allow insert child receive more than two arguments to insert the two childrens in one single call
 
 function createNode(newKey = launch(missingNodeValue)) {
   let key = newKey;
