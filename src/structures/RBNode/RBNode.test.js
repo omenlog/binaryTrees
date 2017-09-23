@@ -171,7 +171,52 @@ describe('test for Red Black Tree Nodes',() => {
       expect(node8.getColor()).toBe('BLACK');
 
       expect(node2.rightChild.getKey()).toBe(5);
-      expect(node5.getColor).toBe('BLACK');
+      expect(node5.getColor()).toBe('BLACK');
+
+      /* small test */
+      const node6 = createRBNode(6, 'BLACK');
+      const node3 = createRBNode(3, 'RED');
+      const node0 = createRBNode(0, 'RED');
+
+      node6.insertChild(node0);
+      node0.insertChild(node3);
+      node3.fixTheTree();
+    });
+
+    test('small tests for test different case of fixup proccess done after and insertion is finished on the tree',() => {
+
+      // case 1 z uncle y is a red node
+      const node3 = createRBNode(3, 'BLACK');
+      const node4 = createRBNode(4, 'RED');
+      const node2 = createRBNode(2, 'RED');
+      const node1 = createRBNode(1, 'RED');
+
+      node3.insertChild(node4);
+      node3.insertChild(node2);
+      node2.insertChild(node1);
+
+      node1.fixTheTree();
+
+      expect(node2.getColor()).toBe('BLACK');
+      expect(node4.getColor()).toBe('BLACK');
+      expect(node3.getColor()).toBe('RED');
+
+      //case 2 z uncle y is a black node or not exist and z is a right child of a node that is a left child, this case in the proccess going trough the case 3
+
+      const node7 = createRBNode(7, 'BLACK');
+      const node6 = createRBNode(6, 'RED');
+      const node5 = createRBNode(5, 'RED');
+
+      node7.insertChild(node5);
+      node5.insertChild(node6);
+
+      node6.fixTheTree();
+
+      expect(node7.getColor()).toBe('RED');
+      expect(node5.getColor()).toBe('RED');
+      expect(node6.getColor()).toBe('BLACK');
+      expect(node6.leftChild.getKey()).toBe(5);
+      expect(node6.rightChild.getKey()).toBe(7);
     });
   });
 });
