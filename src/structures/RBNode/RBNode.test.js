@@ -217,6 +217,43 @@ describe('test for Red Black Tree Nodes',() => {
       expect(node6.getColor()).toBe('BLACK');
       expect(node6.leftChild.getKey()).toBe(5);
       expect(node6.rightChild.getKey()).toBe(7);
+
+      //case 1 with the parent of z node being a rightChild
+
+      const node13 = createRBNode(13, 'RED');
+      const node14 = createRBNode(14, 'BLACK');
+      const node15 = createRBNode(15, 'RED');
+      const node16 = createRBNode(16, 'RED');
+
+      node14.parentNode = undefined;
+      node14.insertChild(node13);
+      node14.insertChild(node16);
+      node16.insertChild(node15);
+
+      node15.fixTheTree();
+
+      expect(node14.getColor()).toBe('RED');
+      expect(node13.getColor()).toBe('BLACK');
+      expect(node16.getColor()).toBe('BLACK');
+
+      // case 2 and 3 with the parent of z node being a right child
+
+      const node10 = createRBNode(10,'BLACK');
+      const node11 = createRBNode(11,'RED');
+      const node12 = createRBNode(12,'RED');
+
+      node10.parentNode = undefined;
+      node10.insertChild(node12);
+      node12.insertChild(node11);
+
+      node11.fixTheTree();
+
+      expect(node11.parentNode).toBeUndefined();
+      expect(node11.leftChild.getKey()).toBe(10);
+      expect(node11.rightChild.getKey()).toBe(12);
+
+      expect(node11.getColor()).toBe('BLACK');
+      expect(node10.getColor()).toBe('RED');
     });
   });
 });
