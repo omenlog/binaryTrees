@@ -72,6 +72,15 @@ describe('Node Tests', () => {
       expect(newNode.rightChild.getKey()).toBe(3);
     });
 
+    test('insertChildrens function can receive node objects and simple values as the user want',() => {
+      const newNode = createNode(2);
+      const node1 = createNode(1);
+      newNode.insertChildrens(node1,3);
+
+      expect(newNode.leftChild.getKey()).toBe(1);
+      expect(newNode.rightChild.getKey()).toBe(3);
+    });
+
     test('every node is capable of say if it have almost one child', () => {
       const newNode = createNode(2).insertChild(1);
       expect(newNode.hasOneChild()).toBeTruthy();
