@@ -23,6 +23,12 @@ function createNode(newKey = launch(missingNodeValue)) {
         ? setChild(this,'LEFT',newNode)
         : setChild(this,'RIGHT',newNode);
     },
+    insertChildrens(...args){
+      args.map(arg => isANodeThis(arg) ? arg: createNode(arg))
+          .forEach(newNode => this.insertChild(newNode));
+
+        return this;
+    },
     leftChild: undefined,
     rightChild: undefined,
     parentNode: undefined

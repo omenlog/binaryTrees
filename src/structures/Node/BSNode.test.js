@@ -65,6 +65,13 @@ describe('Node Tests', () => {
       expect(newNode.rightChild.getKey()).toBe(20);
     });
 
+    test('every node is capable of insert its two child correctly in one single call to insertChilds function',() => {
+      const newNode = createNode(2);
+      newNode.insertChildrens(3,1);
+      expect(newNode.leftChild.getKey()).toBe(1);
+      expect(newNode.rightChild.getKey()).toBe(3);
+    });
+
     test('every node is capable of say if it have almost one child', () => {
       const newNode = createNode(2).insertChild(1);
       expect(newNode.hasOneChild()).toBeTruthy();
