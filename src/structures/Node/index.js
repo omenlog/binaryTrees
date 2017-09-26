@@ -1,9 +1,9 @@
 'use strict';
 
 const Node = require('./prototype');
-const {setChild} = require('./privateFunc');
-const {missingNodeValue} = require('./errors');
-const {launch} = require('../../utils/tools');
+const { addChild } = require('./privateFunc');
+const { missingNodeValue } = require('./errors');
+const { launch } = require('../../utils/tools');
 
 // TODO: Implement error handling in every node feature
 // TODO: Allow insert child receive more than two arguments to insert the two childrens in one single call
@@ -19,15 +19,11 @@ function createNode(newKey = launch(missingNodeValue)) {
     },
     insertChild(arg) {
       const newNode = isANodeThis(arg) ? arg : createNode(arg);
-      return newNode.getKey() < this.getKey()
-        ? setChild(this,'LEFT',newNode)
-        : setChild(this,'RIGHT',newNode);
+      return addChild(this, newNode);
     },
-    insertChildrens(...args){
-      args.map(arg => isANodeThis(arg) ? arg: createNode(arg))
-          .forEach(newNode => this.insertChild(newNode));
-
-        return this;
+    insertChildrens(...args) {
+      args.forEach(arg => this.insertChild(arg));
+      return this;
     },
     leftChild: undefined,
     rightChild: undefined,

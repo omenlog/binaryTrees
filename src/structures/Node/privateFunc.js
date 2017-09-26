@@ -7,6 +7,12 @@ function setChild(parentNode, childrenSide, childrenNode) {
   return parentNode;
 }
 
+function addChild(parentNode,newNode) {
+  return newNode.getKey() < parentNode.getKey()
+    ? setChild(parentNode,'LEFT',newNode)
+    : setChild(parentNode,'RIGHT',newNode);
+}
+
 function parentSuccesor(nodeParent, node) {
   return nodeParent !== undefined && nodeParent.rightChild === node
     ? parentSuccesor(nodeParent.parentNode, nodeParent)
@@ -21,6 +27,7 @@ function parentPredecesor(nodeParent, node) {
 
 module.exports = {
   setChild,
+  addChild,
   parentSuccesor,
   parentPredecesor
 };
