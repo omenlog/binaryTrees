@@ -46,13 +46,10 @@ describe('test for Red Black Tree Nodes',() => {
         /* setup nodes links */
         rootNode.parentNode = undefined;
         rootNode.insertChild(node17);
-        node17.insertChild(node14);
-        node17.insertChild(node21);
-        node14.insertChild(node16);
-        node14.insertChild(node10);
+        node17.insertChildrens(node14,node21);
+        node14.insertChildrens(node10,node16);
         node16.insertChild(node15);
-        node21.insertChild(node19);
-        node21.insertChild(node23);
+        node21.insertChildrens(node19,node23);
 
         /* making the left rotation over node17 */
         node17.rotateToLeft();
@@ -93,8 +90,7 @@ describe('test for Red Black Tree Nodes',() => {
         const node3 = createRBNode(3, 'BLACK');
 
         /* setup node links */
-        node2.insertChild(node1);
-        node2.insertChild(node3);
+        node2.insertChildrens(node1,node3);
 
         node2.rotateToLeft();
 
@@ -151,12 +147,9 @@ describe('test for Red Black Tree Nodes',() => {
       const node15 = createRBNode(15, 'RED');
 
       node11.parentNode = undefined;
-      node11.insertChild(node2);
-      node11.insertChild(node14);
-      node2.insertChild(node1);
-      node2.insertChild(node7);
-      node7.insertChild(node5);
-      node7.insertChild(node8);
+      node11.insertChildrens(node2,node14);
+      node2.insertChildrens(node1,node7);
+      node7.insertChildrens(node5,node8);
       node5.insertChild(node4);
       node14.insertChild(node15);
 
@@ -191,8 +184,7 @@ describe('test for Red Black Tree Nodes',() => {
       const node2 = createRBNode(2, 'RED');
       const node1 = createRBNode(1, 'RED');
 
-      node3.insertChild(node4);
-      node3.insertChild(node2);
+      node3.insertChildrens(node2,node4);
       node2.insertChild(node1);
 
       node1.fixTheTree();
@@ -226,8 +218,7 @@ describe('test for Red Black Tree Nodes',() => {
       const node16 = createRBNode(16, 'RED');
 
       node14.parentNode = undefined;
-      node14.insertChild(node13);
-      node14.insertChild(node16);
+      node14.insertChildrens(node13,node16);
       node16.insertChild(node15);
 
       node15.fixTheTree();
