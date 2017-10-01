@@ -7,6 +7,12 @@ describe("Red Black Tree tests",() => {
     expect(createRBT).toBeDefined();
   });
 
+  it("should create a new tree with an own property rootNode equal to undefined",() => {
+    const newRBTree = createRBT();
+    expect(newRBTree.hasOwnProperty("rootNode")).toBeTruthy();
+    expect(newRBTree.rootNode).toBeUndefined();
+  });
+
   it("should create a new tree that allow introduce new nodes in the tree",() => {
     const newRBTree = createRBT();
     newRBTree.insert(1);
