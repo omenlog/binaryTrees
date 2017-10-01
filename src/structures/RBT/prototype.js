@@ -1,16 +1,21 @@
 "use strict";
 
 const prototypeBST = require("../BST/prototype");
-const {createRBNode} = require("../RBNode");
-const {updateRootOf} = require("./privateFunc");
+const { createRBNode } = require("../RBNode");
+const { addIn } = require("./privateFunc");
+const { isANodeThis } = require("../Node");
+const { flat } = require("../../utils/tools");
 
-const prototypeRB = Object.assign(Object.create(prototypeBST),{
-  insert(newKey){
-    const newRBNode = createRBNode(newKey,"RED");
-    /* calling the insert function of BST prototype object */
-    Object.getPrototypeOf(this.__proto__).insert.call(this,newRBNode);
-    newRBNode.fixTheTree();
-    updateRootOf(this);
+const createRBNodes = arg => {
+  return isANodeThis(arg) ? arg : createRBNode(arg, "RED");
+};
+
+const prototypeRB = Object.assign(Object.create(prototypeBST), {
+  insert(...args) {
+    flat(args)
+      .map(createRBNodes)
+      .forEach(newNode => addIn(this,newNode));
+
     return this;
   }
 });
