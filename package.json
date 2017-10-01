@@ -3,17 +3,12 @@
   "version": "1.0.0",
   "description": "A functional implementation of a binary search tree TDA",
   "main": "index.js",
-  "devDependencies": {
-    "eslint-plugin-flowtype": "^2.35.0",
-    "flow-bin": "^0.51.1",
-    "flow-remove-types": "^1.2.1"
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "node index.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "flow": "flow"
   },
   "jest": {
     "moduleFileExtensions": [
