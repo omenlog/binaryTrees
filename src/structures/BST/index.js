@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const Tree = require('./prototype');
+const Tree = require("./prototype");
 
 // TODO: Implement error handling in every tree feature
 

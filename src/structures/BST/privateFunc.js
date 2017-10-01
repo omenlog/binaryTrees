@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function addNode(newNode, treeNode) {
   return treeNode.getKey() > newNode.getKey()

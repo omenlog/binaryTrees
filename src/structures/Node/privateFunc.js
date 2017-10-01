@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 function setChild(parentNode, childrenSide, childrenNode) {
-  const childSide = childrenSide === 'LEFT' ? 'leftChild' : 'rightChild';
+  const childSide = childrenSide === "LEFT" ? "leftChild" : "rightChild";
   childrenNode.parentNode = parentNode;
   parentNode[childSide] = childrenNode;
   return parentNode;
@@ -9,8 +9,8 @@ function setChild(parentNode, childrenSide, childrenNode) {
 
 function addChild(parentNode,newNode) {
   return newNode.getKey() < parentNode.getKey()
-    ? setChild(parentNode,'LEFT',newNode)
-    : setChild(parentNode,'RIGHT',newNode);
+    ? setChild(parentNode,"LEFT",newNode)
+    : setChild(parentNode,"RIGHT",newNode);
 }
 
 function parentSuccesor(nodeParent, node) {

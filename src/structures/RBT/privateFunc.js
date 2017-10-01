@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function updateRootNode(posibleRoot) {
   return posibleRoot.parentNode === undefined
@@ -8,7 +8,7 @@ function updateRootNode(posibleRoot) {
 
 function updateRootOf(tree) {
   let newRootNode = updateRootNode(tree.rootNode);
-  newRootNode.setColor('BLACK');
+  newRootNode.setColor("BLACK");
   tree.rootNode = newRootNode;
 }
 
