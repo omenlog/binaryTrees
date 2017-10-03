@@ -26,8 +26,28 @@ const launch = ErrorFunction => {
   throw new ErrorFunction();
 };
 
+function replaceIn(tree, oldNode, newNode) {
+  const { parentNode } = oldNode;
+
+  if (parentNode === undefined) {
+    tree.rootNode = newNode;
+  } else {
+    const { leftChild } = parentNode;
+    if (leftChild && leftChild.getKey() === oldNode.getKey()) {
+      parentNode.leftChild = newNode;
+    } else {
+      parentNode.rightChild = newNode;
+    }
+  }
+
+  if (newNode !== undefined) {
+    newNode.parentNode = oldNode.parentNode;
+  }
+}
+
 module.exports = {
   flat,
   buildError,
+  replaceIn,
   launch
 };

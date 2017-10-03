@@ -1,5 +1,7 @@
 "use strict";
 
+const {replaceIn} = require("../../utils/tools");
+
 function addNode(newNode, treeNode) {
   return treeNode.getKey() > newNode.getKey()
     ? treeNode.leftChild === undefined
@@ -49,25 +51,6 @@ function removeFrom(tree, node) {
   }
 
   return tree;
-}
-
-function replaceIn(tree, oldNode, newNode) {
-  const { parentNode } = oldNode;
-
-  if (parentNode === undefined) {
-    tree.rootNode = newNode;
-  } else {
-    const { leftChild } = parentNode;
-    if (leftChild && leftChild.getKey() === oldNode.getKey()) {
-      parentNode.leftChild = newNode;
-    } else {
-      parentNode.rightChild = newNode;
-    }
-  }
-
-  if (newNode !== undefined) {
-    newNode.parentNode = oldNode.parentNode;
-  }
 }
 
 function insertIn(tree, newNode) {
