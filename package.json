@@ -26,5 +26,8 @@
     "functional"
   ],
   "author": "Omar Enrique Lopez Gonzalez",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
 }
