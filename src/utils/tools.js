@@ -45,9 +45,16 @@ function replaceIn(tree, oldNode, newNode) {
   }
 }
 
+function minOf(rootNode) {
+  return rootNode.leftChild === undefined
+    ? rootNode
+    : minOf(rootNode.leftChild);
+}
+
 module.exports = {
   flat,
   buildError,
   replaceIn,
-  launch
+  launch,
+  minOf
 };
