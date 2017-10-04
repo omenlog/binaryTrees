@@ -1,6 +1,6 @@
 "use strict";
 
-const {replaceIn} = require("../../utils/tools");
+const {replaceIn,minOf} = require("../../utils/tools");
 
 function addNode(newNode, treeNode) {
   return treeNode.getKey() > newNode.getKey()
@@ -25,12 +25,6 @@ function findNode(value, rootNode) {
   }
 }
 
-function minOf(rootNode) {
-  return rootNode.leftChild === undefined
-    ? rootNode
-    : minOf(rootNode.leftChild);
-}
-
 function maxOf(rootNode) {
   return rootNode.rightChild === undefined
     ? rootNode
@@ -46,8 +40,8 @@ function removeFrom(tree, node) {
     replaceIn(tree, node, nodeChild);
   } else {
     const succesor = minOf(node.rightChild);
-    tree.remove(succesor.getKey());
     node.setKey(succesor.getKey());
+    removeFrom(tree,succesor);
   }
 
   return tree;
