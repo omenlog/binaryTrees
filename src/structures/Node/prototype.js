@@ -7,6 +7,9 @@ const nodePrototype = {
   hasChildrens() {
     return this.leftChild || this.rightChild;
   },
+  isALeaf(){
+    return false;
+  },
   hasOneChild() {
     return (
       (this.leftChild && !this.rightChild) ||
