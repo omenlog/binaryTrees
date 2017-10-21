@@ -27,6 +27,13 @@ describe("test for Red Black Tree Nodes",() => {
       expect(blackNode.getColor()).toBe("BLACK");
     });
 
+    it("should create a new node with two black leafs as children",() => {
+      const newNode = createRBNode(1, "RED");
+      expect(newNode.leftChild.getColor()).toBe("BLACK");
+      expect(newNode.leftChild.getKey()).toBeUndefined();
+      expect(newNode.rightChild.getKey()).toBeUndefined();
+    });
+
     describe("test for rotations of nodes",() => {
       test("every new node created must be capable to make a left rotation over it in the tree and the right rotation as well",() => {
         /* creating tree nodes*/
@@ -77,8 +84,8 @@ describe("test for Red Black Tree Nodes",() => {
 
         expect(node14.rightChild.getKey()).toBe(15);
         expect(node15.rightChild.getKey()).toBe(16);
-        expect(node16.rightChild).toBeUndefined();
-        expect(node16.leftChild).toBeUndefined();
+        expect(node16.rightChild.getKey()).toBeUndefined();
+        expect(node16.leftChild.getKey()).toBeUndefined();
 
         node15.rotateToLeft();
 
@@ -96,10 +103,10 @@ describe("test for Red Black Tree Nodes",() => {
 
         expect(node3.parentNode).toBeUndefined();
         expect(node3.leftChild.getKey()).toBe(2);
-        expect(node3.rightChild).toBeUndefined();
+        expect(node3.rightChild.getKey()).toBeUndefined();
 
         expect(node2.parentNode.getKey()).toBe(3);
-        expect(node2.rightChild).toBeUndefined();
+        expect(node2.rightChild.getKey()).toBeUndefined();
         expect(node2.leftChild.getKey()).toBe(1);
 
         expect(node1.parentNode.getKey()).toBe(2);
@@ -117,17 +124,17 @@ describe("test for Red Black Tree Nodes",() => {
         expect(node3.leftChild.getKey()).toBe(1);
         expect(node1.rightChild.getKey()).toBe(2);
         expect(node2.parentNode.getKey()).toBe(1);
-        expect(node2.leftChild).toBeUndefined();
-        expect(node2.rightChild).toBeUndefined();
+        expect(node2.leftChild.getKey()).toBeUndefined();
+        expect(node2.rightChild.getKey()).toBeUndefined();
       });
 
-      test("if one node cannot rotate to left because it has not right child then one exception must be throw",() => {
+      test("if a node cannot rotate to left because it has not right child then one exception must be throw",() => {
         const node1 = createRBNode(1, "BLACK");
         const {unableToMakeLeftRotation} = require("structures/RBNode/errors");
         expect(() => node1.rotateToLeft()).toThrowError(unableToMakeLeftRotation);
       });
 
-      test("if a node cannot rotate to the right because it has not left children then one exception must be throw",() => {
+      test("if a node cannot rotate to right because it has not left children then one exception must be throw",() => {
         const node = createRBNode(1,"BLACK");
         const {unableToMakeRightRotation} = require("structures/RBNode/errors");
         expect(unableToMakeRightRotation).toBeDefined();
