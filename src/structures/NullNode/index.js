@@ -1,11 +1,14 @@
-"use strict"
+"use strict";
 
 const nullNode = {
-  getKey(){
+  getKey() {
     return undefined;
   },
-  getColor(){
+  getColor() {
     return "BLACK";
+  },
+  isALeaf() {
+    return true;
   }
 };
 
