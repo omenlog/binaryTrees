@@ -9,6 +9,9 @@ const nullNode = {
   },
   isALeaf() {
     return true;
+  },
+  isALeftChild(){
+    return this.parentNode.leftChild === this;
   }
 };
 
