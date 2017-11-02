@@ -66,4 +66,39 @@ describe("Red Black Tree tests", () => {
     expect(newRBTree.contain(3)).toBeTruthy();
     expect(newRBTree.contain(4)).toBeTruthy();
   });
+
+  it("shoudl create a new tree capable of remove nodes from it correctly",() => {
+    const newRBTree = createRBT();
+    newRBTree.insert(1,2,3,5);
+
+    newRBTree.remove(3);
+    expect(newRBTree.contain(3)).toBeFalsy();
+    expect(newRBTree.find(5).getColor()).toBe("BLACK");
+
+    const anotherTree = createRBT();
+    anotherTree.insert(1,2,4,5,6,10).remove(4);
+    expect(anotherTree.contain(4)).toBeFalsy();
+
+    const treeWithTwoNodes = createRBT().insert(1,2);
+    treeWithTwoNodes.remove(1);
+    expect(treeWithTwoNodes.contain(1)).toBeFalsy();
+    expect(treeWithTwoNodes.find(2).getColor()).toBe("BLACK");
+
+    const testTree = createRBT().insert(6,10,32,21,8,9,34,20);
+
+    testTree.remove(21);
+    expect(testTree.find(20).getColor()).toBe("BLACK");
+
+    testTree.remove(10);
+    expect(testTree.rootNode.getKey()).toBe(20);
+    expect(testTree.find(32).getColor()).toBe("BLACK");
+    expect(testTree.find(32).leftChild.isALeaf()).toBeTruthy();
+    expect(testTree.find(32).rightChild.getKey()).toBe(34);
+    expect(testTree.find(34).getColor()).toBe("RED");
+
+    const treeWithOneNode = createRBT().insert(16);
+    treeWithOneNode.remove(16);
+    expect(treeWithOneNode.rootNode).toBeUndefined();
+    expect(treeWithOneNode.contain(16)).toBeFalsy();
+  });
 });
