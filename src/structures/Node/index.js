@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-const Node = require("./prototype");
-const { addChild } = require("./privateFunc");
-const { missingNodeValue } = require("./errors");
-const { launch } = require("../../utils/tools");
+const Node = require('./prototype');
+const { addChild } = require('./privateFunc');
+const { missingNodeValue } = require('./errors');
+const { launch } = require('../../utils/tools');
 
 // TODO: Implement error handling in every node feature
 // TODO: Allow insert child receive more than two arguments to insert the two childrens in one single call
@@ -32,7 +32,7 @@ function createNode(newKey = launch(missingNodeValue)) {
 }
 
 const isANodeThis = arg => {
-  return typeof arg === "object" && Node.isPrototypeOf(arg);
+  return typeof arg === 'object' && Node.isPrototypeOf(arg);
 };
 
 module.exports = {

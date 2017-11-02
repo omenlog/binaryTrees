@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const {replaceIn,minOf} = require("../../utils/tools");
+const {replaceIn,minOf} = require('../../utils/tools');
 
 function addNode(newNode, treeNode) {
   return treeNode.getKey() > newNode.getKey()

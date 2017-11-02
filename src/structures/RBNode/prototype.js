@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
-const { launch } = require("../../utils/tools");
+const { launch } = require('../../utils/tools');
 const {
   unableToMakeLeftRotation,
   unableToMakeRightRotation
-} = require("./errors");
+} = require('./errors');
 
 const rbNodePrototype = {
   hasChildrens(){
@@ -24,7 +24,7 @@ const rbNodePrototype = {
       }
 
       if (this.parentNode !== undefined) {
-        const nodeSide = this.isALeftChild() ? "leftChild" : "rightChild";
+        const nodeSide = this.isALeftChild() ? 'leftChild' : 'rightChild';
         this.parentNode[nodeSide] = nodeRightChild;
       }
 
@@ -48,7 +48,7 @@ const rbNodePrototype = {
       }
 
       if (this.parentNode !== undefined) {
-        const nodeSide = this.isALeftChild() ? "leftChild" : "rightChild";
+        const nodeSide = this.isALeftChild() ? 'leftChild' : 'rightChild';
         this.parentNode[nodeSide] = nodeLeftChild;
       }
 
@@ -60,14 +60,14 @@ const rbNodePrototype = {
   },
   fixTheTree() {
     let z = this;
-    while (z.parentNode && z.parentNode.getColor() === "RED") {
+    while (z.parentNode && z.parentNode.getColor() === 'RED') {
       if (z.parentNode.isALeftChild()) {
         const y = z.parentNode.parentNode.rightChild;
-        if (y && y.getColor() === "RED") {
+        if (y && y.getColor() === 'RED') {
           // case 1
-          z.parentNode.setColor("BLACK"); // case 1
-          y.setColor("BLACK"); // case 1
-          z.parentNode.parentNode.setColor("RED"); // case 1
+          z.parentNode.setColor('BLACK'); // case 1
+          y.setColor('BLACK'); // case 1
+          z.parentNode.parentNode.setColor('RED'); // case 1
           z = z.parentNode.parentNode; // case 1
         } else {
           if (!z.isALeftChild()) {
@@ -76,17 +76,17 @@ const rbNodePrototype = {
             z.rotateToLeft(); // case 2
           }
 
-          z.parentNode.setColor("BLACK"); // case 3
-          z.parentNode.parentNode.setColor("RED"); // case 3
+          z.parentNode.setColor('BLACK'); // case 3
+          z.parentNode.parentNode.setColor('RED'); // case 3
           z.parentNode.parentNode.rotateToRight(); // case 3
         }
       } else {
         const y = z.parentNode.parentNode.leftChild;
-        if (y && y.getColor() === "RED") {
+        if (y && y.getColor() === 'RED') {
           // case 1
-          z.parentNode.setColor("BLACK"); // case 1
-          y.setColor("BLACK"); // case 1
-          z.parentNode.parentNode.setColor("RED"); // case 1
+          z.parentNode.setColor('BLACK'); // case 1
+          y.setColor('BLACK'); // case 1
+          z.parentNode.parentNode.setColor('RED'); // case 1
           z = z.parentNode.parentNode; // case 1
         } else {
           if (z.isALeftChild()) {
@@ -94,8 +94,8 @@ const rbNodePrototype = {
             z = z.parentNode; // case 2
             z.rotateToRight(); // case 2
           }
-          z.parentNode.setColor("BLACK"); // case 3
-          z.parentNode.parentNode.setColor("RED"); // case 3
+          z.parentNode.setColor('BLACK'); // case 3
+          z.parentNode.parentNode.setColor('RED'); // case 3
           z.parentNode.parentNode.rotateToLeft(); // case 3
         }
       }

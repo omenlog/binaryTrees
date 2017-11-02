@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const { replaceIn,minOf } = require("../../utils/tools");
+const { replaceIn,minOf } = require('../../utils/tools');
 
 function updateRootNode(posibleRoot) {
   return posibleRoot.parentNode === undefined
@@ -10,7 +10,7 @@ function updateRootNode(posibleRoot) {
 
 function updateRootOf(tree) {
   let newRootNode = updateRootNode(tree.rootNode);
-  newRootNode.setColor("BLACK");
+  newRootNode.setColor('BLACK');
   tree.rootNode = newRootNode;
 }
 
@@ -30,7 +30,7 @@ function removeFrom(rbTree, node) {
   } else if (node.hasOneChild()) {
     const x = node.leftChild !== undefined ? node.leftChild : node.rightChild;
     replaceIn(rbTree, node, x);
-    if(nodeOriginalColor === "BLACK"){
+    if(nodeOriginalColor === 'BLACK'){
       x.deleteFixUp(rbTree);
     }
   } else {
@@ -45,15 +45,15 @@ function removeFrom(rbTree, node) {
 function deleteFixUp(tree,x) {
   let node = x;
   let sibling;
-  while (node.parentNode !== undefined && node.getColor() === "BLACK") {
+  while (node.parentNode !== undefined && node.getColor() === 'BLACK') {
     let {parentNode} = node;
 
     if (node.isALeftChild()) {
       sibling = parentNode.rightChild;
 
-      if (sibling.getColor() === "RED") {
-        sibling.setColor("BLACK");             // case 1
-        parentNode.setColor("RED");            // case 1
+      if (sibling.getColor() === 'RED') {
+        sibling.setColor('BLACK');             // case 1
+        parentNode.setColor('RED');            // case 1
         parentNode.rotateToLeft();             // case 1
         sibling = parentNode.rightChild;       // case 1
       }
@@ -64,20 +64,20 @@ function deleteFixUp(tree,x) {
       // condiciones dentro de los if para q todo permanezca de la misma forma y no sea necesaria
       // una estructrua para representar a los NIL nodes
 
-      if (sibling.leftChild.getColor() === "BLACK" && sibling.rightChild.getColor() === "BLACK") {
-        sibling.setColor("RED");               // case 2
+      if (sibling.leftChild.getColor() === 'BLACK' && sibling.rightChild.getColor() === 'BLACK') {
+        sibling.setColor('RED');               // case 2
         node = parentNode;                     // case 2
       } else{
-        if (sibling.rightChild.getColor() === "BLACK") {
-          sibling.leftChild.setColor("BLACK");   // case 3
-          sibling.setColor("RED");               // case 3
+        if (sibling.rightChild.getColor() === 'BLACK') {
+          sibling.leftChild.setColor('BLACK');   // case 3
+          sibling.setColor('RED');               // case 3
           sibling.rotateToRight();               // case 3
           sibling = parentNode.rightChild;       // case 3
         }
 
         sibling.setColor(parentNode.getColor()); // case 4
-        parentNode.setColor("BLACK");            // case 4
-        sibling.rightChild.setColor("BLACK");    // case 4
+        parentNode.setColor('BLACK');            // case 4
+        sibling.rightChild.setColor('BLACK');    // case 4
         parentNode.rotateToLeft();               // case 4
         node = tree.rootNode;                    // case 4
       }
@@ -85,34 +85,34 @@ function deleteFixUp(tree,x) {
     else{
       sibling = parentNode.leftChild;
 
-      if (sibling.getColor() === "RED") {
-        sibling.setColor("BLACK");
-        parentNode.setColor("RED");
+      if (sibling.getColor() === 'RED') {
+        sibling.setColor('BLACK');
+        parentNode.setColor('RED');
         parentNode.rotateToRight()();
         sibling = parentNode.leftChild;
       }
 
-      if (sibling.leftChild.getColor() === "BLACK" && sibling.rightChild.getColor() === "BLACK") {
-        sibling.setColor("RED");
+      if (sibling.leftChild.getColor() === 'BLACK' && sibling.rightChild.getColor() === 'BLACK') {
+        sibling.setColor('RED');
         node = parentNode;
       } else {
-        if (sibling.leftChild.getColor() === "BLACK") {
-          sibling.rightChild.setColor("BLACK");
-          sibling.setColor("RED");
+        if (sibling.leftChild.getColor() === 'BLACK') {
+          sibling.rightChild.setColor('BLACK');
+          sibling.setColor('RED');
           sibling.rotateToLeft();
           sibling = parentNode.leftChild;
         }
 
         sibling.setColor(parentNode.getColor());
-        parentNode.setColor("BLACK");
-        sibling.leftChild.setColor("BLACK");
+        parentNode.setColor('BLACK');
+        sibling.leftChild.setColor('BLACK');
         parentNode.rotateToRight();
         node = tree.rootNode;
       }
     }
   }
   
-  node.setColor("BLACK");
+  node.setColor('BLACK');
 }
 
 module.exports = {

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /* importing modules */
 
@@ -9,10 +9,10 @@ const {
   insertIn,
   maxOf,
   reduceTree
-} = require("./privateFunc");
+} = require('./privateFunc');
 
-const { createNode, isANodeThis } = require("../Node");
-const { flat } = require("../../utils/tools");
+const { createNode, isANodeThis } = require('../Node');
+const { flat } = require('../../utils/tools');
 
 /* small auxiliar functions used in the tree prototype */
 
