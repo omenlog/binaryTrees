@@ -24,7 +24,6 @@ function addIn(tree, newRBNode) {
 
 function removeFrom(rbTree, node) {
   const nodeOriginalColor = node.getColor();
-  let x;
   if (!node.hasChildrens()) {
     replaceIn(rbTree, node, undefined);
   } else if (node.hasOneChild()) {
@@ -111,7 +110,7 @@ function deleteFixUp(tree,x) {
       }
     }
   }
-  
+
   node.setColor('BLACK');
 }
 
