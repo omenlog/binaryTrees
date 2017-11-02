@@ -1,7 +1,9 @@
-"use strict";
+'use strict';
 
 function flatReducer(flatArray, arg) {
-  return Array.isArray(arg) ? flatArray.concat(flat(arg)) : flatArray.concat(arg);
+  return Array.isArray(arg)
+    ? flatArray.concat(flat(arg))
+    : flatArray.concat(arg);
 }
 
 function flat(args) {
@@ -46,7 +48,7 @@ function replaceIn(tree, oldNode, newNode) {
 }
 
 function minOf(rootNode) {
-  return rootNode.leftChild === undefined
+  return rootNode.leftChild === undefined || rootNode.leftChild.isALeaf()
     ? rootNode
     : minOf(rootNode.leftChild);
 }
