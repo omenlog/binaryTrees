@@ -12,11 +12,11 @@ describe('Null Nodes Tests', () => {
     expect(nullNode.getColor()).toBe('BLACK');
   });
 
-  test('null Node has undefined as it's key', () => {
+  test('null Node has undefined as it\'s key', () => {
     expect(nullNode.getKey()).toBeUndefined();
   });
 
-  test('null nodes hasn't children in any side', () => {
+  test('null nodes hasn\'t children in any side', () => {
     expect(nullNode.leftChild).toBeUndefined();
     expect(nullNode.rightChild).toBeUndefined();
   });
