@@ -14,6 +14,21 @@ describe('Red Black Tree tests', () => {
     expect(newRBTree.rootNode).toBeUndefined();
   });
 
+  it('should create a new red black tree with values passed as params inside',() => {
+    const newRBTree = createRBT(1,2,3);
+    expect(newRBTree.contain(1,2,3)).not.toBeFalsy();
+  });
+
+  it('should initialize new tree with initial values passed as array',() => {
+    const newRBTree = createRBT([1,3,2]);
+    expect(newRBTree.contain(1,2,3)).not.toBeFalsy();
+  });
+
+  it('should create new tree with initial values passed as simple values and array at the same time',() => {
+    const newRBTree = createRBT(1,[4,5],3,[2]);
+    expect(newRBTree.contain(1,2,3,4,5)).not.toBeFalsy();
+  });
+
   it('should create a new tree that allow introduce new nodes in the tree', () => {
     const newRBTree = createRBT();
     newRBTree.insert(1);
