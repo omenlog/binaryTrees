@@ -27,9 +27,7 @@ describe('Tree Tests', () => {
 
     it('should create a new tree with nodes inside passed as array of values',() => {
       const newTree = createBST([2,1,3]);
-      expect(newTree.contain(1)).toBeTruthy();
-      expect(newTree.contain(2)).toBeTruthy();
-      expect(newTree.contain(3)).toBeTruthy();
+      expect(newTree.contain(1,2,3)).not.toBeFalsy();
     });
 
     test('the tree must be capable of add a new node or add several nodes in one single call to insert function', () => {
