@@ -71,6 +71,20 @@ describe('Tree Tests', () => {
       expect(newTree.contain(3)).toBeFalsy();
     });
 
+    test('if the value being deleted if not present in the tree then this remain unchanged',() => {
+      const newBST = createBST().insert(2,3,4);
+
+      newBST.remove(10);
+      newBST.remove(23);
+      newBST.remove(20);
+
+      expect(newBST.contain(2)).toBeTruthy();
+      expect(newBST.contain(3)).toBeTruthy();
+      expect(newBST.contain(4)).toBeTruthy();
+
+      expect(newBST.rootNode.getValue()).toBe(2);
+    });
+
     test('the tree is capable of check if one or several nodes are present or not, if the query is for many nodes the function return false just is one node is missing in the tree', () => {
       const newTree = createBST();
       newTree.insert(1, 2, 3, 4, 5, 6);

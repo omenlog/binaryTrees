@@ -90,6 +90,18 @@ describe('Red Black Tree tests', () => {
     expect(newRBTree.contain(6)).toBeFalsy();
   });
 
+  test('if the value being deleted if not present in the tree then this remain unchanged',() => {
+    const newRBTree = createRBT(1,2,3,4);
+
+    newRBTree.remove(10);
+    newRBTree.remove(23);
+    newRBTree.remove(20);
+
+    expect(newRBTree.contain(2)).toBeTruthy();
+    expect(newRBTree.contain(3)).toBeTruthy();
+    expect(newRBTree.contain(4)).toBeTruthy();
+  });
+
   it('shoudl create a new tree capable of remove nodes from it correctly',() => {
     const newRBTree = createRBT();
     newRBTree.insert(1,2,3,5);
