@@ -11,7 +11,7 @@ const { launch } = require('../../utils/tools');
 function createNode(newKey = launch(missingNodeValue)) {
   let key = newKey;
   return Object.assign(Object.create(Node), {
-    getKey() {
+    getValue() {
       return key;
     },
     setKey(k) {

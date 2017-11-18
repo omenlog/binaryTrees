@@ -13,7 +13,7 @@ describe('Null Nodes Tests', () => {
   });
 
   test('null Node has undefined as it\'s key', () => {
-    expect(nullNode.getKey()).toBeUndefined();
+    expect(nullNode.getValue()).toBeUndefined();
   });
 
   test('null nodes hasn\'t children in any side', () => {

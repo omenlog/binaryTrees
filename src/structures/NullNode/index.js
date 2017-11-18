@@ -1,7 +1,7 @@
 'use strict';
 
 const nullNode = {
-  getKey() {
+  getValue() {
     return undefined;
   },
   getColor() {

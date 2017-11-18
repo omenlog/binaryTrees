@@ -3,8 +3,8 @@
 const { replaceIn, minOf } = require('../../utils/tools');
 
 function addNode(newNode, treeNode) {
-  if (newNode.getKey() !== treeNode.getKey()) {
-    return treeNode.getKey() > newNode.getKey()
+  if (newNode.getValue() !== treeNode.getValue()) {
+    return treeNode.getValue() > newNode.getValue()
       ? treeNode.leftChild === undefined || treeNode.leftChild.isALeaf()
         ? treeNode.insertChild(newNode)
         : addNode(newNode, treeNode.leftChild)
@@ -18,7 +18,7 @@ function findNode(value, rootNode) {
   if (rootNode === undefined) {
     return undefined;
   } else {
-    const nodeValue = rootNode.getKey();
+    const nodeValue = rootNode.getValue();
     return nodeValue === value
       ? rootNode
       : nodeValue < value
@@ -42,7 +42,7 @@ function removeFrom(tree, node) {
     replaceIn(tree, node, nodeChild);
   } else {
     const succesor = minOf(node.rightChild);
-    node.setKey(succesor.getKey());
+    node.setKey(succesor.getValue());
     removeFrom(tree, succesor);
   }
 

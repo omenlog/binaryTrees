@@ -30,8 +30,8 @@ describe('test for Red Black Tree Nodes',() => {
     it('should create a new node with two black leafs as children',() => {
       const newNode = createRBNode(1, 'RED');
       expect(newNode.leftChild.getColor()).toBe('BLACK');
-      expect(newNode.leftChild.getKey()).toBeUndefined();
-      expect(newNode.rightChild.getKey()).toBeUndefined();
+      expect(newNode.leftChild.getValue()).toBeUndefined();
+      expect(newNode.rightChild.getValue()).toBeUndefined();
     });
 
     describe('test for rotations of nodes',() => {
@@ -62,34 +62,34 @@ describe('test for Red Black Tree Nodes',() => {
         node17.rotateToLeft();
 
         /* after the rotation */
-        expect(node26.leftChild.getKey()).toBe(21);
+        expect(node26.leftChild.getValue()).toBe(21);
 
-        expect(node21.leftChild.getKey()).toBe(17);
-        expect(node21.rightChild.getKey()).toBe(23);
+        expect(node21.leftChild.getValue()).toBe(17);
+        expect(node21.rightChild.getValue()).toBe(23);
 
-        expect(node17.leftChild.getKey()).toBe(14);
-        expect(node17.rightChild.getKey()).toBe(19);
+        expect(node17.leftChild.getValue()).toBe(14);
+        expect(node17.rightChild.getValue()).toBe(19);
 
         /* now making the right rotation over node17 */
         node21.rotateToRight();
 
         /* after the rotation */
-        expect(node26.leftChild.getKey()).toBe(17);
+        expect(node26.leftChild.getValue()).toBe(17);
 
-        expect(node17.rightChild.getKey()).toBe(21);
+        expect(node17.rightChild.getValue()).toBe(21);
 
-        expect(node21.leftChild.getKey()).toBe(19);
+        expect(node21.leftChild.getValue()).toBe(19);
 
         node16.rotateToRight();
 
-        expect(node14.rightChild.getKey()).toBe(15);
-        expect(node15.rightChild.getKey()).toBe(16);
-        expect(node16.rightChild.getKey()).toBeUndefined();
-        expect(node16.leftChild.getKey()).toBeUndefined();
+        expect(node14.rightChild.getValue()).toBe(15);
+        expect(node15.rightChild.getValue()).toBe(16);
+        expect(node16.rightChild.getValue()).toBeUndefined();
+        expect(node16.leftChild.getValue()).toBeUndefined();
 
         node15.rotateToLeft();
 
-        expect(node14.rightChild.getKey()).toBe(16);
+        expect(node14.rightChild.getValue()).toBe(16);
 
         /* creating another tree for tests purpose */
         const node2 = createRBNode(2, 'BLACK');
@@ -102,30 +102,30 @@ describe('test for Red Black Tree Nodes',() => {
         node2.rotateToLeft();
 
         expect(node3.parentNode).toBeUndefined();
-        expect(node3.leftChild.getKey()).toBe(2);
-        expect(node3.rightChild.getKey()).toBeUndefined();
+        expect(node3.leftChild.getValue()).toBe(2);
+        expect(node3.rightChild.getValue()).toBeUndefined();
 
-        expect(node2.parentNode.getKey()).toBe(3);
-        expect(node2.rightChild.getKey()).toBeUndefined();
-        expect(node2.leftChild.getKey()).toBe(1);
+        expect(node2.parentNode.getValue()).toBe(3);
+        expect(node2.rightChild.getValue()).toBeUndefined();
+        expect(node2.leftChild.getValue()).toBe(1);
 
-        expect(node1.parentNode.getKey()).toBe(2);
+        expect(node1.parentNode.getValue()).toBe(2);
 
         node3.rotateToRight();
 
         expect(node2.parentNode).toBeUndefined();
-        expect(node2.rightChild.getKey()).toBe(3);
-        expect(node3.parentNode.getKey()).toBe(2);
+        expect(node2.rightChild.getValue()).toBe(3);
+        expect(node3.parentNode.getValue()).toBe(2);
 
         node2.rotateToLeft();
         node2.rotateToRight();
 
         expect(node3.parentNode).toBeUndefined();
-        expect(node3.leftChild.getKey()).toBe(1);
-        expect(node1.rightChild.getKey()).toBe(2);
-        expect(node2.parentNode.getKey()).toBe(1);
-        expect(node2.leftChild.getKey()).toBeUndefined();
-        expect(node2.rightChild.getKey()).toBeUndefined();
+        expect(node3.leftChild.getValue()).toBe(1);
+        expect(node1.rightChild.getValue()).toBe(2);
+        expect(node2.parentNode.getValue()).toBe(1);
+        expect(node2.leftChild.getValue()).toBeUndefined();
+        expect(node2.rightChild.getValue()).toBeUndefined();
       });
 
       test('if a node cannot rotate to left because it has not right child then one exception must be throw',() => {
@@ -163,14 +163,14 @@ describe('test for Red Black Tree Nodes',() => {
       node4.fixTheTree();
 
       expect(node7.parentNode).toBeUndefined();
-      expect(node7.leftChild.getKey()).toBe(2);
-      expect(node7.rightChild.getKey()).toBe(11);
+      expect(node7.leftChild.getValue()).toBe(2);
+      expect(node7.rightChild.getValue()).toBe(11);
 
       expect(node11.getColor()).toBe('RED');
-      expect(node11.leftChild.getKey()).toBe(8);
+      expect(node11.leftChild.getValue()).toBe(8);
       expect(node8.getColor()).toBe('BLACK');
 
-      expect(node2.rightChild.getKey()).toBe(5);
+      expect(node2.rightChild.getValue()).toBe(5);
       expect(node5.getColor()).toBe('BLACK');
 
       /* small test */
@@ -214,8 +214,8 @@ describe('test for Red Black Tree Nodes',() => {
       expect(node7.getColor()).toBe('RED');
       expect(node5.getColor()).toBe('RED');
       expect(node6.getColor()).toBe('BLACK');
-      expect(node6.leftChild.getKey()).toBe(5);
-      expect(node6.rightChild.getKey()).toBe(7);
+      expect(node6.leftChild.getValue()).toBe(5);
+      expect(node6.rightChild.getValue()).toBe(7);
 
       //case 1 with the parent of z node being a rightChild
 
@@ -247,8 +247,8 @@ describe('test for Red Black Tree Nodes',() => {
       node11.fixTheTree();
 
       expect(node11.parentNode).toBeUndefined();
-      expect(node11.leftChild.getKey()).toBe(10);
-      expect(node11.rightChild.getKey()).toBe(12);
+      expect(node11.leftChild.getValue()).toBe(10);
+      expect(node11.rightChild.getValue()).toBe(12);
 
       expect(node11.getColor()).toBe('BLACK');
       expect(node10.getColor()).toBe('RED');

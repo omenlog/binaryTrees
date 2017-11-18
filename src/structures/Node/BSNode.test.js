@@ -31,15 +31,15 @@ describe('Node Tests', () => {
     it('should config getter and setter for the key property', () => {
       const newNode = createNode(5);
       newNode.setKey(10);
-      expect(newNode.getKey()).toBe(10);
+      expect(newNode.getValue()).toBe(10);
     });
 
     test('every node is capable of setup correctly its children without specific the child side', () => {
       const newNode = createNode(2);
       newNode.insertChild(1);
       newNode.insertChild(3);
-      expect(newNode.leftChild.getKey()).toBe(1);
-      expect(newNode.rightChild.getKey()).toBe(3);
+      expect(newNode.leftChild.getValue()).toBe(1);
+      expect(newNode.rightChild.getValue()).toBe(3);
     });
 
     test('every node is capable of tell if it has some children', () => {
@@ -61,15 +61,15 @@ describe('Node Tests', () => {
       const newNode = createNode(10);
       newNode.insertChild(20);
       newNode.insertChild(5);
-      expect(newNode.leftChild.getKey()).toBe(5);
-      expect(newNode.rightChild.getKey()).toBe(20);
+      expect(newNode.leftChild.getValue()).toBe(5);
+      expect(newNode.rightChild.getValue()).toBe(20);
     });
 
     test('every node is capable of insert its two child correctly in one single call to insertChilds function',() => {
       const newNode = createNode(2);
       newNode.insertChildrens(3,1);
-      expect(newNode.leftChild.getKey()).toBe(1);
-      expect(newNode.rightChild.getKey()).toBe(3);
+      expect(newNode.leftChild.getValue()).toBe(1);
+      expect(newNode.rightChild.getValue()).toBe(3);
     });
 
     test('insertChildrens function can receive node objects and simple values as the user want',() => {
@@ -77,8 +77,8 @@ describe('Node Tests', () => {
       const node1 = createNode(1);
       newNode.insertChildrens(node1,3);
 
-      expect(newNode.leftChild.getKey()).toBe(1);
-      expect(newNode.rightChild.getKey()).toBe(3);
+      expect(newNode.leftChild.getValue()).toBe(1);
+      expect(newNode.rightChild.getValue()).toBe(3);
     });
 
     test('every node is capable of say if it have almost one child', () => {
@@ -94,13 +94,13 @@ describe('Node Tests', () => {
       const newTree = createBST(7, 1, 5, 10, -3, 4, 9, 0, 8, 3, 2.5, 2);
 
       const node5 = newTree.find(5);
-      expect(node5.succesor().getKey()).toBe(7);
+      expect(node5.succesor().getValue()).toBe(7);
 
       const node0 = newTree.find(0);
-      expect(node0.succesor().getKey()).toBe(1);
+      expect(node0.succesor().getValue()).toBe(1);
 
       const node1 = newTree.find(1);
-      expect(node1.succesor().getKey()).toBe(2);
+      expect(node1.succesor().getValue()).toBe(2);
 
       const node10 = newTree.find(10);
       expect(node10.succesor()).toBeUndefined();
@@ -110,13 +110,13 @@ describe('Node Tests', () => {
       const newTree = createBST(7, 1, 5, 10, -3, 4, 9, 0, 8, 3, 2.5, 2);
 
       const node5 = newTree.find(5);
-      expect(node5.predecesor().getKey()).toBe(4);
+      expect(node5.predecesor().getValue()).toBe(4);
 
       const node0 = newTree.find(0);
-      expect(node0.predecesor().getKey()).toBe(-3);
+      expect(node0.predecesor().getValue()).toBe(-3);
 
       const node1 = newTree.find(1);
-      expect(node1.predecesor().getKey()).toBe(0);
+      expect(node1.predecesor().getValue()).toBe(0);
 
       const node10 = newTree.find(-3);
       expect(node10.predecesor()).toBeUndefined();

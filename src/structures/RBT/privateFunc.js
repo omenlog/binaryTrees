@@ -34,7 +34,7 @@ function removeFrom(rbTree, node) {
     }
   } else {
     const succesor = minOf(node.rightChild);
-    node.setKey(succesor.getKey());
+    node.setKey(succesor.getValue());
     removeFrom(rbTree, succesor);
   }
 

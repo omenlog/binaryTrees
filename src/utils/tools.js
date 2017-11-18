@@ -35,7 +35,7 @@ function replaceIn(tree, oldNode, newNode) {
     tree.rootNode = newNode;
   } else {
     const { leftChild } = parentNode;
-    if (leftChild && leftChild.getKey() === oldNode.getKey()) {
+    if (leftChild && leftChild.getValue() === oldNode.getValue()) {
       parentNode.leftChild = newNode;
     } else {
       parentNode.rightChild = newNode;

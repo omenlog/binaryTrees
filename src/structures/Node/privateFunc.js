@@ -8,7 +8,7 @@ function setChild(parentNode, childrenSide, childrenNode) {
 }
 
 function addChild(parentNode,newNode) {
-  return newNode.getKey() < parentNode.getKey()
+  return newNode.getValue() < parentNode.getValue()
     ? setChild(parentNode,'LEFT',newNode)
     : setChild(parentNode,'RIGHT',newNode);
 }

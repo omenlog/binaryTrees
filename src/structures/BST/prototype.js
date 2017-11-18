@@ -52,7 +52,7 @@ const treePrototype = {
     return this.rootNode === undefined
       ? initialAcc
       : !initialAcc
-        ? reduceTree(fn, initialNode.getKey(), initialNode.succesor())
+        ? reduceTree(fn, initialNode.getValue(), initialNode.succesor())
         : reduceTree(fn, initialAcc, initialNode);
   },
   max() {

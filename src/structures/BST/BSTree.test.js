@@ -85,9 +85,9 @@ describe('Tree Tests', () => {
       const newTree = createBST(2, 1, 3, -14, 2.5, 6, 5, 10);
 
       const node3 = newTree.find(3);
-      expect(node3.getKey()).toBe(3);
-      expect(node3.leftChild.getKey()).toBe(2.5);
-      expect(node3.rightChild.getKey()).toBe(6);
+      expect(node3.getValue()).toBe(3);
+      expect(node3.leftChild.getValue()).toBe(2.5);
+      expect(node3.rightChild.getValue()).toBe(6);
 
       const node9 = newTree.find(9);
       expect(node9).toBeUndefined();
@@ -115,19 +115,19 @@ describe('Tree Tests', () => {
       const tree2 = createBST().insert(2, 3, 1, 4);
       tree2.remove(3);
       expect(tree2.contain(3)).toBeFalsy();
-      expect(tree2.rootNode.rightChild.getKey()).toBe(4);
+      expect(tree2.rootNode.rightChild.getValue()).toBe(4);
 
       const tree3 = createBST().insert(2, 1, 3, 2.5, 6, 5);
       tree3.remove(6);
       expect(tree3.contain(6)).toBeFalsy();
-      expect(tree3.rootNode.rightChild.rightChild.getKey()).toBe(5);
+      expect(tree3.rootNode.rightChild.rightChild.getValue()).toBe(5);
 
       expect(tree3.remove(234)).toEqual(tree3);
 
       const tree4 = createBST().insert(1, 4, 3, 5);
       tree4.remove(1);
       expect(tree4.contain(1)).toBeFalsy();
-      expect(tree4.rootNode.getKey()).toBe(4);
+      expect(tree4.rootNode.getValue()).toBe(4);
 
       /* test cases when the node remove has two child */
 
@@ -135,20 +135,20 @@ describe('Tree Tests', () => {
 
       tree5.remove(3);
       expect(tree5.contain(3)).toBeFalsy();
-      expect(tree5.rootNode.rightChild.getKey()).toBe(5);
-      expect(tree5.rootNode.rightChild.leftChild.getKey()).toBe(2.5);
-      expect(tree5.rootNode.rightChild.rightChild.getKey()).toBe(6);
+      expect(tree5.rootNode.rightChild.getValue()).toBe(5);
+      expect(tree5.rootNode.rightChild.leftChild.getValue()).toBe(2.5);
+      expect(tree5.rootNode.rightChild.rightChild.getValue()).toBe(6);
 
       tree5.remove(5);
       expect(tree5.contain(5)).toBeFalsy();
-      expect(tree5.rootNode.leftChild.getKey()).toBe(1);
-      expect(tree5.rootNode.rightChild.getKey()).toBe(6);
-      expect(tree5.rootNode.rightChild.leftChild.getKey()).toBe(2.5);
+      expect(tree5.rootNode.leftChild.getValue()).toBe(1);
+      expect(tree5.rootNode.rightChild.getValue()).toBe(6);
+      expect(tree5.rootNode.rightChild.leftChild.getValue()).toBe(2.5);
       expect(tree5.rootNode.rightChild.rightChild).toBeUndefined();
 
       tree5.remove(2);
       expect(tree5.contain(2)).toBeFalsy();
-      expect(tree5.rootNode.getKey()).toBe(2.5);
+      expect(tree5.rootNode.getValue()).toBe(2.5);
     });
 
     test('the tree must be capable of return the node with the max value in the tree or undefined if it\'s and empty tree', () => {
@@ -156,7 +156,7 @@ describe('Tree Tests', () => {
       expect(newTree.max()).toBeUndefined();
 
       newTree.insert(12.3, 23, 1, 4, -23, 34, 1000, 7, 0, 43);
-      expect(newTree.max().getKey()).toBe(1000);
+      expect(newTree.max().getValue()).toBe(1000);
     });
 
     test('the tree must be capable of return the node with the mmin value in the tree or undefined if it\'s and empty tree', () => {
@@ -164,7 +164,7 @@ describe('Tree Tests', () => {
       expect(newTree.min()).toBeUndefined();
 
       newTree.insert(12.3, 23, 1, 4, -23, 34, 1000, 7, 0, 43);
-      expect(newTree.min().getKey()).toBe(-23);
+      expect(newTree.min().getValue()).toBe(-23);
     });
 
     test('the tree can create an iterator to iterate over the entire tree using inorder tree walk', () => {
@@ -172,18 +172,18 @@ describe('Tree Tests', () => {
 
       const it = newTree.iterator();
 
-      expect(it.next().value.getKey()).toBe(1);
-      expect(it.next().value.getKey()).toBe(2);
-      expect(it.next().value.getKey()).toBe(3);
-      expect(it.next().value.getKey()).toBe(4);
-      expect(it.next().value.getKey()).toBe(5);
+      expect(it.next().value.getValue()).toBe(1);
+      expect(it.next().value.getValue()).toBe(2);
+      expect(it.next().value.getValue()).toBe(3);
+      expect(it.next().value.getValue()).toBe(4);
+      expect(it.next().value.getValue()).toBe(5);
 
       expect(it.next()).toMatchObject({ value: undefined, done: true });
       expect(it.next()).toMatchObject({ value: undefined, done: true });
 
       let i = 1;
       for (let node of newTree) {
-        expect(node.getKey()).toBe(i++);
+        expect(node.getValue()).toBe(i++);
       }
 
       const emptyIterator = createBST().iterator();
@@ -193,7 +193,7 @@ describe('Tree Tests', () => {
     test('the tree iterator must be end when the return method of iterator is called',() => {
       const it = createBST(3, 2, 5, 1, 4).iterator();
 
-      expect(it.next().value.getKey()).toBe(1);
+      expect(it.next().value.getValue()).toBe(1);
       expect(it.return()).toMatchObject({value: undefined,done: true});
       expect(it.next()).toMatchObject({value: undefined,done:true});
       expect(it.return(10)).toMatchObject({value:10,done:true});
@@ -203,15 +203,15 @@ describe('Tree Tests', () => {
       const newTree = createBST(4,1,2,5,3);
 
       const sumTotal = newTree.reduce((acc,node) => {
-        return acc + node.getKey();
+        return acc + node.getValue();
       });
 
       const productTotal = newTree.reduce((acc,node) => {
-        return acc*node.getKey();
+        return acc*node.getValue();
       });
 
       const nodeString = newTree.reduce((acc,node) => {
-        return acc + node.getKey().toString();
+        return acc + node.getValue().toString();
       });
 
       expect(sumTotal).toBe(15);

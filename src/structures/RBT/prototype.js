@@ -35,7 +35,7 @@ const prototypeRB = Object.assign(Object.create(prototypeBST), {
       replaceIn(this, node, nodeChild);
     } else {
       const succesor = minOf(node.rightChild);
-      node.setKey(succesor.getKey());
+      node.setKey(succesor.getValue());
       nodeOriginalColor = succesor.getColor();
       x = succesor.rightChild;
       replaceIn(this, succesor, succesor.rightChild);

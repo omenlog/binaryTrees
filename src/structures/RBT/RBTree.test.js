@@ -35,10 +35,10 @@ describe('Red Black Tree tests', () => {
     newRBTree.insert(3);
     newRBTree.insert(2);
 
-    expect(newRBTree.rootNode.getKey()).toBe(2);
+    expect(newRBTree.rootNode.getValue()).toBe(2);
     expect(newRBTree.rootNode.getColor()).toBe('BLACK');
-    expect(newRBTree.rootNode.leftChild.getKey()).toBe(1);
-    expect(newRBTree.rootNode.rightChild.getKey()).toBe(3);
+    expect(newRBTree.rootNode.leftChild.getValue()).toBe(1);
+    expect(newRBTree.rootNode.rightChild.getValue()).toBe(3);
     expect(newRBTree.rootNode.leftChild.getColor()).toBe('RED');
     expect(newRBTree.rootNode.rightChild.getColor()).toBe('RED');
   });
@@ -66,7 +66,7 @@ describe('Red Black Tree tests', () => {
     const node1 = createRBNode(1,'RED');
 
     newRBTree.insert(node1);
-    expect(newRBTree.rootNode.getKey()).toBe(1);
+    expect(newRBTree.rootNode.getValue()).toBe(1);
     expect(newRBTree.rootNode.getColor()).toBe('BLACK');
   });
 
@@ -113,10 +113,10 @@ describe('Red Black Tree tests', () => {
     expect(testTree.find(20).getColor()).toBe('BLACK');
 
     testTree.remove(10);
-    expect(testTree.rootNode.getKey()).toBe(20);
+    expect(testTree.rootNode.getValue()).toBe(20);
     expect(testTree.find(32).getColor()).toBe('BLACK');
     expect(testTree.find(32).leftChild.isALeaf()).toBeTruthy();
-    expect(testTree.find(32).rightChild.getKey()).toBe(34);
+    expect(testTree.find(32).rightChild.getValue()).toBe(34);
     expect(testTree.find(34).getColor()).toBe('RED');
 
     const treeWithOneNode = createRBT().insert(16);
