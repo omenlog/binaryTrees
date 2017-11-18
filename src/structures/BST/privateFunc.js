@@ -1,15 +1,17 @@
 'use strict';
 
-const {replaceIn,minOf} = require('../../utils/tools');
+const { replaceIn, minOf } = require('../../utils/tools');
 
 function addNode(newNode, treeNode) {
-  return treeNode.getKey() > newNode.getKey()
-    ? treeNode.leftChild === undefined || treeNode.leftChild.isALeaf()
-      ? treeNode.insertChild(newNode)
-      : addNode(newNode, treeNode.leftChild)
-    : treeNode.rightChild === undefined || treeNode.rightChild.isALeaf()
-      ? treeNode.insertChild(newNode)
-      : addNode(newNode, treeNode.rightChild);
+  if (newNode.getKey() !== treeNode.getKey()) {
+    return treeNode.getKey() > newNode.getKey()
+      ? treeNode.leftChild === undefined || treeNode.leftChild.isALeaf()
+        ? treeNode.insertChild(newNode)
+        : addNode(newNode, treeNode.leftChild)
+      : treeNode.rightChild === undefined || treeNode.rightChild.isALeaf()
+        ? treeNode.insertChild(newNode)
+        : addNode(newNode, treeNode.rightChild);
+  }
 }
 
 function findNode(value, rootNode) {
@@ -41,7 +43,7 @@ function removeFrom(tree, node) {
   } else {
     const succesor = minOf(node.rightChild);
     node.setKey(succesor.getKey());
-    removeFrom(tree,succesor);
+    removeFrom(tree, succesor);
   }
 
   return tree;
