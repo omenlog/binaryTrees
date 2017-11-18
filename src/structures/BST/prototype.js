@@ -1,7 +1,5 @@
 'use strict';
 
-/* importing modules */
-
 const {
   findNode,
   removeFrom,
@@ -14,8 +12,7 @@ const {
 const { createNode, isANodeThis } = require('../Node');
 const { flat } = require('../../utils/tools');
 
-/* small auxiliar functions used in the tree prototype */
-
+/* small auxiliar function used in the tree prototype */
 
 const createNodes = arg => {
   return isANodeThis(arg) ? arg : createNode(arg);
@@ -49,7 +46,7 @@ const treePrototype = {
   },
   reduce(fn, initialAcc) {
     const initialNode = this.min();
-    return this.rootNode === undefined
+      return this.rootNode === undefined
       ? initialAcc
       : !initialAcc
         ? reduceTree(fn, initialNode.getValue(), initialNode.succesor())
