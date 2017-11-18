@@ -64,6 +64,13 @@ describe('Tree Tests', () => {
       expect(newTree.contain(5)).toBeTruthy();
     });
 
+    test('if the value that being inserted are in the tree then the tree are unmodified',() => {
+      const newTree = createBST(1,2,3);
+      newTree.insert(3);
+      newTree.remove(3);
+      expect(newTree.contain(3)).toBeFalsy();
+    });
+
     test('the tree is capable of check if one or several nodes are present or not, if the query is for many nodes the function return false just is one node is missing in the tree', () => {
       const newTree = createBST();
       newTree.insert(1, 2, 3, 4, 5, 6);

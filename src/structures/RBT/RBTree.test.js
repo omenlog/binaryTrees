@@ -82,6 +82,14 @@ describe('Red Black Tree tests', () => {
     expect(newRBTree.contain(4)).toBeTruthy();
   });
 
+  test('if the same value is inserted two time in the tree then the tree reamin unchanged',() => {
+    const newRBTree = createRBT(2,3,6);
+    newRBTree.insert(6);
+    newRBTree.insert(6);
+    newRBTree.remove(6);
+    expect(newRBTree.contain(6)).toBeFalsy();
+  });
+
   it('shoudl create a new tree capable of remove nodes from it correctly',() => {
     const newRBTree = createRBT();
     newRBTree.insert(1,2,3,5);
