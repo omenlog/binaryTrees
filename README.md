@@ -78,5 +78,40 @@ const newTree = createRBT(1,[4,5],2,0);
 
   newTree.remove([7,8]); // removing various elements using array as argument
 
-  newTree.remove(9).remove(10).insert(11); // remove call can be chained 
+  newTree.remove(9).remove(10).insert(11); // remove call can be chained
+```
+
+### Searching
+
+Sometimes when a search is did against the tree we receive as result a node and to get the node value we must call the `getValue` function to esxtract correctly the value.Search in the tree can be done using the following functions `contain`,`find`,the first return a boolean to tell if the tree contain he value and the latter return the node with the value specified or `undefined` if the tree not contain the value.Examples:
+
+```js
+  const {createBST} = require('binaryTrees');
+  const newTree = createBST(1,3,5,7,9,2,4,6,8,10);
+
+  // asking if the value are in the tree
+
+  newTree.contain(3); // true
+  newTree.contain(100); // false
+
+  // using contain with several values only return true if all values are in the tree
+
+  newTree.contain(3,5,7); // true
+
+  newTree.contain(1,2,3,100); // false
+
+  // retrieving nodes,check the use of getValue function
+
+  newTree.find(3).getValue(); // 3
+  newTree.find(100); // undefined;
+
+  //retrieving various nodes in one single call
+
+  newTree.find(1,2,3); // [Node(1),Node(2),Node(3)]
+
+  newTree.find(1,35); // [Node(1)] not present values are ignored
+
+  newTree.find([4,5]); // [Node(4),Node(5)]
+
+  newTree.find(1,[2,3],4,[10],25); // [Node(1),Node(2),Node(3),Node(4)]
 ```
