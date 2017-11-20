@@ -63,3 +63,20 @@ const newTree = createRBT(1,[4,5],2,0);
 
   newTree.insert([12,13]).insert(14).insert(15,16); // insert call can be chained
 ```
+
+### Deletion
+
+```js
+  const {createRBT} = require('binaryTrees');
+  const newTree = createRBT(1,2,3,4,5,6,7,8,9,10);
+
+  newTree.remove(3); // 3 value remove from the tree;
+
+  newTree.remove(100); // nothing occur the tree remain without any change
+
+  newTree.remove(2,4,5); // removing various elements in one single call
+
+  newTree.remove([7,8]); // removing various elements using array as argument
+
+  newTree.remove(9).remove(10).insert(11); // remove call can be chained 
+```
