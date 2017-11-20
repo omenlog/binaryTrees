@@ -10,6 +10,11 @@ const createRBNodes = arg => {
   return isANodeThis(arg) ? arg : createRBNode(arg, 'RED');
 };
 
+const deleteFrom = (rbTree, nodeValue) => {
+  const node = rbTree.find(nodeValue);
+  return node !== undefined ? removeFrom(rbTree, node) : rbTree;
+};
+
 const prototypeRB = Object.assign(Object.create(prototypeBST), {
   insert(...args) {
     flat(args)
@@ -18,9 +23,9 @@ const prototypeRB = Object.assign(Object.create(prototypeBST), {
 
     return this;
   },
-  remove(nodeKey) {
-    const node = this.find(nodeKey);
-    return node !== undefined ? removeFrom(this, node) : this;
+  remove(...args) {
+    flat(args).forEach(arg => deleteFrom(this, arg));
+    return this;
   }
 });
 

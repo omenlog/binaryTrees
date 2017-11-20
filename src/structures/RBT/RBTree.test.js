@@ -102,7 +102,7 @@ describe('Red Black Tree tests', () => {
     expect(newRBTree.contain(4)).toBeTruthy();
   });
 
-  it('shoudl create a new tree capable of remove nodes from it correctly',() => {
+  it('should create a new tree capable of remove nodes from it correctly',() => {
     const newRBTree = createRBT();
     newRBTree.insert(1,2,3,5);
 
@@ -135,5 +135,17 @@ describe('Red Black Tree tests', () => {
     treeWithOneNode.remove(16);
     expect(treeWithOneNode.rootNode).toBeUndefined();
     expect(treeWithOneNode.contain(16)).toBeFalsy();
+  });
+
+  it('should create a new capable of remove more than one node in one single call to remove function',() => {
+    const newTree = createRBT(1,3,5,2,4);
+
+    newTree.remove(2,3);
+    expect(newTree.contain(2)).toBeFalsy();
+    expect(newTree.contain(3)).toBeFalsy();
+
+    newTree.remove([4,5]);
+    expect(newTree.contain(4)).toBeFalsy();
+    expect(newTree.contain(5)).toBeFalsy();
   });
 });
