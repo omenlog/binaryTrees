@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: Thrown and error when contain and find are called without any argument
+
 const {
   findNode,
   removeFrom,
@@ -36,9 +38,13 @@ const treePrototype = {
     const everyNodeIsFinded = nodes.every(node => node);
     return everyNodeIsFinded ? true : false;
   },
-  find(nodeKey) {
-    const node = findNode(nodeKey, this.rootNode);
-    return node !== undefined ? node : undefined;
+  find(...args) {
+    const flatArgs = flat(args);
+    return flatArgs.length === 1
+      ? findNode(args[0], this.rootNode)
+      : flatArgs
+          .map(arg => findNode(arg, this.rootNode))
+          .filter(node => node !== undefined);
   },
   remove(...args) {
     flat(args)

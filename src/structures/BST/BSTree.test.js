@@ -93,6 +93,7 @@ describe('Tree Tests', () => {
       expect(newTree.contain(2, 3, 4)).toBeTruthy();
       expect(newTree.contain([5, 6])).toBeTruthy();
       expect(newTree.contain(10)).toBeFalsy();
+      expect(newTree.contain(2,11)).toBeFalsy();
     });
 
     test('the tree is capable of find a node and return the node data or undefined if the node is not present', () => {
@@ -105,6 +106,27 @@ describe('Tree Tests', () => {
 
       const node9 = newTree.find(9);
       expect(node9).toBeUndefined();
+    });
+
+    test('the tree is capable of find several nodes in one single call the value not present in the tree are ignored',() => {
+      const newTree = createBST(1,3,5,2,4,6);
+      const treeValues = newTree.find(1,10,2,20,3,30);
+
+      expect(treeValues).toHaveLength(3);
+      expect(treeValues[0].getValue()).toBe(1);
+      expect(treeValues[1].getValue()).toBe(2);
+      expect(treeValues[2].getValue()).toBe(3);
+
+      const anotherValues = newTree.find([4,5,6]);
+      expect(anotherValues[0].getValue()).toBe(4);
+      expect(anotherValues[1].getValue()).toBe(5);
+      expect(anotherValues[2].getValue()).toBe(6);
+
+      const combiningValues = newTree.find(1,[2,3],4,[100]);
+      expect(combiningValues).toHaveLength(4);
+
+      const emptyValues = newTree.find(100,101,102,103);
+      expect(emptyValues).toHaveLength(0);
     });
 
     test('the tree must be able to remove some node', () => {
