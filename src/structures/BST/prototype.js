@@ -40,13 +40,17 @@ const treePrototype = {
     const node = findNode(nodeKey, this.rootNode);
     return node !== undefined ? node : undefined;
   },
-  remove(arg) {
-    const node = this.find(arg);
-    return node !== undefined ? removeFrom(this, node) : this;
+  remove(...args) {
+    flat(args)
+      .map(arg => this.find(arg))
+      .filter(node => node !== undefined)
+      .forEach(node => removeFrom(this, node));
+
+    return this;
   },
   reduce(fn, initialAcc) {
     const initialNode = this.min();
-      return this.rootNode === undefined
+    return this.rootNode === undefined
       ? initialAcc
       : !initialAcc
         ? reduceTree(fn, initialNode.getValue(), initialNode.succesor())
