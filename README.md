@@ -44,6 +44,7 @@ const anotherTree = createRBT([3,2,5]);
 // array and values can be mixed on tree creation
 const newTree = createRBT(1,[4,5],2,0);
 ```
+
 ### Insertion
 
 ```js
@@ -114,4 +115,20 @@ Sometimes when a search is did against the tree we receive as result a node and 
   newTree.find([4,5]); // [Node(4),Node(5)]
 
   newTree.find(1,[2,3],4,[10],25); // [Node(1),Node(2),Node(3),Node(4)]
+```
+
+### Max and Min values
+
+We can know at any time the node with the max value in the tree or the node that contain the min value,if the node it not the desired result then we can know only the maximum or minimum value
+
+```js
+  const {createRBT} = require('binaryTrees');
+
+  const newRBT = createRBT(1,2,3,4,5,6,7,8,9,10);
+
+  newRBT.max(); // Node 10
+  newRBT.min(); // Node 1
+
+  console.log(newRBT.maxValue()); // print 10
+  console.log(newRBT.minValue()); // print 1
 ```
