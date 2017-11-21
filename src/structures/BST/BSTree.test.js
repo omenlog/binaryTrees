@@ -195,6 +195,15 @@ describe('Tree Tests', () => {
       expect(newTree.max().getValue()).toBe(1000);
     });
 
+    test('the tree must be capable of return the max value that it store',() => {
+      const newTree = createBST(1,3,5,7,9,2,4,6,8,10);
+      expect(newTree.minValue()).toBe(1);
+      expect(newTree.maxValue()).toBe(10);
+
+      const emptyTree = createBST();
+      expect(emptyTree.maxValue()).toBeUndefined();
+    });
+
     test('the must be capable of remove more than one node in one single call to remove function',() => {
       const newTree = createBST(1,3,5,2,4);
 
@@ -207,7 +216,7 @@ describe('Tree Tests', () => {
       expect(newTree.contain(5)).toBeFalsy();
     });
 
-    test('the tree must be capable of return the node with the mmin value in the tree or undefined if it\'s and empty tree', () => {
+    test('the tree must be capable of return the node with the min value in the tree or undefined if it\'s and empty tree', () => {
       const newTree = createBST();
       expect(newTree.min()).toBeUndefined();
 

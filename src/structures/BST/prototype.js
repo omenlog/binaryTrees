@@ -66,9 +66,17 @@ const treePrototype = {
     const { rootNode } = this;
     return rootNode === undefined ? undefined : maxOf(rootNode);
   },
+  maxValue() {
+    const max = this.max();
+    return max !== undefined ? max.getValue() : undefined;
+  },
   min() {
     const { rootNode } = this;
     return rootNode === undefined ? undefined : minOf(rootNode);
+  },
+  minValue() {
+    const min = this.min();
+    return min !== undefined ? min.getValue() : undefined;
   },
   [Symbol.iterator]() {
     return this.iterator();
