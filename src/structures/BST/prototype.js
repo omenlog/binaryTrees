@@ -89,7 +89,7 @@ const treePrototype = {
     };
 
     const buildResult = () => ({
-      value: actualNode,
+      value: actualNode ? actualNode.getValue(): undefined,
       done: actualNode === undefined
     });
 

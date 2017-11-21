@@ -229,18 +229,18 @@ describe('Tree Tests', () => {
 
       const it = newTree.iterator();
 
-      expect(it.next().value.getValue()).toBe(1);
-      expect(it.next().value.getValue()).toBe(2);
-      expect(it.next().value.getValue()).toBe(3);
-      expect(it.next().value.getValue()).toBe(4);
-      expect(it.next().value.getValue()).toBe(5);
+      expect(it.next().value).toBe(1);
+      expect(it.next().value).toBe(2);
+      expect(it.next().value).toBe(3);
+      expect(it.next().value).toBe(4);
+      expect(it.next().value).toBe(5);
 
       expect(it.next()).toMatchObject({ value: undefined, done: true });
       expect(it.next()).toMatchObject({ value: undefined, done: true });
 
       let i = 1;
-      for (let node of newTree) {
-        expect(node.getValue()).toBe(i++);
+      for (let value of newTree) {
+        expect(value).toBe(i++);
       }
 
       const emptyIterator = createBST().iterator();
@@ -250,7 +250,7 @@ describe('Tree Tests', () => {
     test('the tree iterator must be end when the return method of iterator is called',() => {
       const it = createBST(3, 2, 5, 1, 4).iterator();
 
-      expect(it.next().value.getValue()).toBe(1);
+      expect(it.next().value).toBe(1);
       expect(it.return()).toMatchObject({value: undefined,done: true});
       expect(it.next()).toMatchObject({value: undefined,done:true});
       expect(it.return(10)).toMatchObject({value:10,done:true});
