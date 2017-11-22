@@ -96,6 +96,20 @@ describe('Tree Tests', () => {
       expect(newTree.contain(2,11)).toBeFalsy();
     });
 
+    it('should throw an error when the contain function is call without any argument',() => {
+      const {missingArgInContain} = require('./errors');
+      const newTree = createBST();
+      newTree.insert(1,2,3,4);
+      expect(() => newTree.contain()).toThrowError(missingArgInContain);
+    });
+
+    it('should throw an error when the find function is call without any argument',() => {
+      const {missingArgInFind} = require('./errors');
+      const newTree = createBST();
+      newTree.insert(1,2,3,4);
+      expect(() => newTree.find()).toThrowError(missingArgInFind);
+    });
+
     test('the tree is capable of find a node and return the node data or undefined if the node is not present', () => {
       const newTree = createBST(2, 1, 3, -14, 2.5, 6, 5, 10);
 
