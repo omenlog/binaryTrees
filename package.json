@@ -1,6 +1,6 @@
 {
   "name": "bin-trees",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Implementation of binary search trees and red black trees",
   "main": "index.js",
   "scripts": {
