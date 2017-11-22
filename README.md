@@ -99,7 +99,8 @@ to get the node value we must call the `getValue` function to esxtract correctly
 the value.Search in the tree can be done using the following functions
 `contain`,`find`,the first return a boolean to tell if the tree contain he value
 and the latter return the node with the value specified or `undefined` if the
-tree not contain the value.Examples:
+tree not contain the value, if any of this functions is called without any
+argument then and error is throw.Examples:
 
 ```js
 const newTree = createBST(1, 3, 5, 7, 9, 2, 4, 6, 8, 10);
