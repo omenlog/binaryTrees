@@ -28,8 +28,6 @@
   "author": "Omar Enrique Lopez Gonzalez",
   "license": "MIT",
   "devDependencies": {
-    "bintrees": "^1.0.2",
-    "jest": "^21.2.1",
-    "ramda": "^0.25.0"
+    "jest": "^21.2.1"
   }
 }
