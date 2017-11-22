@@ -1,7 +1,7 @@
 {
   "name": "bin-trees",
   "version": "1.0.0",
-  "description": "A functional implementation of a binary search tree TDA",
+  "description": "Implementation of binary search trees and red black trees",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
