@@ -176,3 +176,22 @@ The tree also implement the especial `Symbol.iterator` so it can be used with an
    console.log(value);
  }
 ```
+
+### Array like methods
+
+#### Reduce
+
+We can use reduce over one tree created just like we do with standard arrays
+
+```js
+  const newTree = createRBT(1,2,3,4,5);
+
+  const sum = (acc,val) => acc + val;
+  const product = (acc,val) => acc * val;
+
+  const treeTotal = newTree.reduce(sum);
+  const treeFactorial = newTree.reduce(product);
+
+  console.log(treeTotal); // 15
+  console.log(treeFactorial); // 120
+```
