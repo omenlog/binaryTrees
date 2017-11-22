@@ -1,5 +1,5 @@
 {
-  "name": "binary_search_tree",
+  "name": "bin-trees",
   "version": "1.0.0",
   "description": "A functional implementation of a binary search tree TDA",
   "main": "index.js",
@@ -23,8 +23,7 @@
     "TDA",
     "binary",
     "search",
-    "tree",
-    "functional"
+    "tree"
   ],
   "author": "Omar Enrique Lopez Gonzalez",
   "license": "MIT",
