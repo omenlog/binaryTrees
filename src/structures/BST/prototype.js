@@ -1,7 +1,5 @@
 'use strict';
 
-// TODO: Thrown and error when contain and find are called without any argument
-
 const {
   findNode,
   removeFrom,
@@ -13,6 +11,7 @@ const {
 
 const { createNode, isANodeThis } = require('../Node');
 const { flat } = require('../../utils/tools');
+const { missingArgInFind,missingArgInContain } = require('./errors');
 
 /* small auxiliar function used in the tree prototype */
 
@@ -34,17 +33,26 @@ const treePrototype = {
     return this;
   },
   contain(...args) {
-    const nodes = flat(args).map(arg => findNode(arg, this.rootNode));
-    const everyNodeIsFinded = nodes.every(node => node);
-    return everyNodeIsFinded ? true : false;
+    const flatArgs = flat(args);
+    if (flatArgs.length === 0) {
+      throw new missingArgInContain();
+    } else {
+      const nodes = flatArgs.map(arg => findNode(arg, this.rootNode));
+      const everyNodeIsFinded = nodes.every(node => node);
+      return everyNodeIsFinded ? true : false;
+    }
   },
   find(...args) {
     const flatArgs = flat(args);
-    return flatArgs.length === 1
-      ? findNode(args[0], this.rootNode)
-      : flatArgs
-          .map(arg => findNode(arg, this.rootNode))
-          .filter(node => node !== undefined);
+    if (flatArgs.length === 0) {
+      throw new missingArgInFind();
+    } else {
+      return flatArgs.length === 1
+        ? findNode(args[0], this.rootNode)
+        : flatArgs
+            .map(arg => findNode(arg, this.rootNode))
+            .filter(node => node !== undefined);
+    }
   },
   remove(...args) {
     flat(args)
@@ -89,7 +97,7 @@ const treePrototype = {
     };
 
     const buildResult = () => ({
-      value: actualNode ? actualNode.getValue(): undefined,
+      value: actualNode ? actualNode.getValue() : undefined,
       done: actualNode === undefined
     });
 
