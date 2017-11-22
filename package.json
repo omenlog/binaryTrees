@@ -1,6 +1,6 @@
 {
   "name": "bin-trees",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Implementation of binary search trees and red black trees",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test:coverage": "jest --coverage",
     "benchmarks": "node ./src/utils/benchmarks.js"
   },
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "https://github.com/omenlogo/binaryTrees"
   },
