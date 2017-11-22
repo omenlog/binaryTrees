@@ -1,9 +1,9 @@
 # Binary Search Tree(BST) and Red Black Tree(RBT) structures
 
-This an implementation of BST and RBT using the theory explained in
-**Introduction to Algorithms** relative to this structures. This first version
-of the package only support as value of tree nodes numeric values, in later
-version maybe this can be change and the values can be object ;)
+This is an implementation of BST and RBT using the theory explained in
+[**Introduction to Algorithms**](https://mitpress.mit.edu/books/introduction-algorithms) relative to this structures. This first version
+of the package only support numeric values for tree nodes, in future releases
+this can be changed and object as values can be used ;)
 
 ### Example
 
