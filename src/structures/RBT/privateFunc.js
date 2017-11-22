@@ -64,17 +64,11 @@ function deleteFixUp(tree, x) {
       sibling = parentNode.rightChild;
 
       if (sibling.getColor() === 'RED') {
-        sibling.setColor('BLACK'); // case 1
-        parentNode.setColor('RED'); // case 1
-        parentNode.rotateToLeft(); // case 1
-        sibling = parentNode.rightChild; // case 1
+        sibling.setColor('BLACK');
+        parentNode.setColor('RED');
+        parentNode.rotateToLeft();
+        sibling = parentNode.rightChild;
       }
-
-      // aqui cuando pregunte por los hijos si son negros puedo hacer una equivalancia
-      // y preguntar al mismo tiempo si son undefined al final es lo mismo q si fueras negros
-      // o sea para el arbol son vistos como nodos negros = solo seria annadir esto dentro d las
-      // condiciones dentro de los if para q todo permanezca de la misma forma y no sea necesaria
-      // una estructrua para representar a los NIL nodes
 
       if (
         sibling.leftChild.getColor() === 'BLACK' &&
