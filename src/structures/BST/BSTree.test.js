@@ -259,16 +259,16 @@ describe('Tree Tests', () => {
     test('the tree have a reduce method that allow reduce the tree to a single value, the tree is recorred using in order process',() => {
       const newTree = createBST(4,1,2,5,3);
 
-      const sumTotal = newTree.reduce((acc,node) => {
-        return acc + node.getValue();
+      const sumTotal = newTree.reduce((acc,value) => {
+        return acc + value;
       });
 
-      const productTotal = newTree.reduce((acc,node) => {
-        return acc*node.getValue();
+      const productTotal = newTree.reduce((acc,value) => {
+        return acc*value;
       });
 
-      const nodeString = newTree.reduce((acc,node) => {
-        return acc + node.getValue().toString();
+      const nodeString = newTree.reduce((acc,value) => {
+        return acc + value.toString();
       });
 
       expect(sumTotal).toBe(15);

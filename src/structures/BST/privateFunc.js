@@ -59,7 +59,7 @@ function insertIn(tree, newNode) {
 function reduceTree(fn, acc, treeNode) {
   return treeNode === undefined
     ? acc
-    : reduceTree(fn, fn(acc, treeNode), treeNode.succesor());
+    : reduceTree(fn, fn(acc, treeNode.getValue()), treeNode.succesor());
 }
 
 module.exports = {
