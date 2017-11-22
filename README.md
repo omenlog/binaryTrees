@@ -8,7 +8,7 @@ version maybe this can be change and the values can be object ;)
 ### Example
 
 ```js
-const { createRBT } = require('binaryTrees');
+const { createRBT } = require('bin-trees');
 
 const newRBT = createRBT();
 newRBT.insert(2);
@@ -36,7 +36,7 @@ tree created they have the same API.
 ### Tree Creation
 
 ```js
-const { createRBT } = require('binaryTrees');
+const { createRBT } = require('bin-trees');
 
 // create empty tree
 const emptyTree = createRBT();
