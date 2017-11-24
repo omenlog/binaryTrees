@@ -2,7 +2,7 @@
   "name": "bin-trees",
   "version": "1.0.3",
   "description": "Implementation of binary search trees and red black trees",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node index.js",
     "test": "jest",
