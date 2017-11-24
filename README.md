@@ -1,4 +1,5 @@
 # Binary Search Tree(BST) and Red Black Tree(RBT) structures
+[![Build Status](https://travis-ci.org/omenlogo/binaryTrees.svg?branch=master)](https://travis-ci.org/omenlogo/binaryTrees)
 
 This is an implementation of BST and RBT using the theory explained in
 [**Introduction to Algorithms**](https://mitpress.mit.edu/books/introduction-algorithms) relative to this structures. This first version
