@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
+    "precommit": "npm run lint -- --fix && npm test",
     "start": "node index.js",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -34,6 +35,7 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^4.11.0",
+    "husky": "^0.14.3",
     "jest": "^21.2.1"
   }
 }
