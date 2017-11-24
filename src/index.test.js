@@ -1,6 +1,6 @@
 'use strict'
 
-const binaryTrees = require(".");
+const binaryTrees = require('.');
 
 describe('Test For index file',() => {
   it('should a function to create new binary search tree',() => {
