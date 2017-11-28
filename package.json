@@ -31,6 +31,7 @@
   "author": "Omar Enrique Lopez Gonzalez",
   "license": "MIT",
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "jest": "^21.2.1"
   }
 }
