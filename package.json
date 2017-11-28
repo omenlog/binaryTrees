@@ -7,7 +7,8 @@
     "start": "node index.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "coveralls": "cat ./coverage/lconv.info | node node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
