@@ -4,6 +4,8 @@
   "description": "Implementation of binary search trees and red black trees",
   "main": "src/index.js",
   "scripts": {
+    "lint": "eslint .",
+    "precommit": "npm run lint && npm test",
     "start": "node index.js",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -33,6 +35,8 @@
   "license": "MIT",
   "devDependencies": {
     "coveralls": "^3.0.0",
+    "eslint": "^4.11.0",
+    "husky": "^0.14.3",
     "jest": "^21.2.1"
   }
 }
