@@ -1,6 +1,5 @@
 # Binary Search Tree(BST) and Red Black Tree(RBT) structures
 [![Build Status](https://travis-ci.org/omenlogo/binaryTrees.svg?branch=master)](https://travis-ci.org/omenlogo/binaryTrees)
-
 [![Coverage Status](https://coveralls.io/repos/github/omenlogo/binaryTrees/badge.svg?branch=master)](https://coveralls.io/github/omenlogo/binaryTrees?branch=master)
 
 This is an implementation of BST and RBT using the theory explained in
