@@ -6,7 +6,8 @@ const {
   minOf,
   insertIn,
   maxOf,
-  reduceTree
+  reduceTree,
+  filterTree
 } = require('./privateFunc');
 
 const { createNode, isANodeThis } = require('../Node');
@@ -69,6 +70,10 @@ const treePrototype = {
       : !initialAcc
         ? reduceTree(fn, initialNode.getValue(), initialNode.succesor())
         : reduceTree(fn, initialAcc, initialNode);
+  },
+  filter(fn){
+    filterTree(fn,this,this.min());
+    return this;
   },
   max() {
     const { rootNode } = this;
