@@ -62,6 +62,16 @@ function reduceTree(fn, acc, treeNode) {
     : reduceTree(fn, fn(acc, treeNode.getValue()), treeNode.succesor());
 }
 
+function filterTree(fn, tree, treeNode) {
+  const actualNode = treeNode;
+  if (actualNode !== undefined) {
+    if (!fn(actualNode.getValue())) {
+      removeFrom(tree, treeNode);
+    }
+    filterTree(fn, tree, treeNode.succesor());
+  }
+}
+
 module.exports = {
   removeFrom,
   addNode,
@@ -69,5 +79,6 @@ module.exports = {
   reduceTree,
   maxOf,
   findNode,
-  insertIn
+  insertIn,
+  filterTree
 };
