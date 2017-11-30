@@ -209,6 +209,22 @@ describe('Tree Tests', () => {
       expect(newTree.max().getValue()).toBe(1000);
     });
 
+    // test('the tree is capable of return and array with a specified number of major values in the',() => {
+    //   const newTree = createBST(1,3,2,4);
+    //   const twoMajorsValues = newTree.maxValues(2);
+    //
+    //   expect(twoMajorsValues).toHaveLength(2);
+    //   expect(twoMajorsValues[0]).toBe(4);
+    //   expect(twoMajorsValues[1]).toBe(3);
+    //
+    //   const majorValues = newTree.maxValues(10);
+    //   expect(majorValues).toHaveLength(4);
+    //   expect(majorValues[0]).toBe(4);
+    //   expect(majorValues[1]).toBe(3);
+    //   expect(majorValues[2]).toBe(2);
+    //   expect(majorValues[3]).toBe(1);
+    // });
+
     test('the tree must be capable of return the max value that it store',() => {
       const newTree = createBST(1,3,5,7,9,2,4,6,8,10);
       expect(newTree.minValue()).toBe(1);
@@ -296,6 +312,17 @@ describe('Tree Tests', () => {
 
       expect(finalValue).toBeUndefined();
       expect(initialAcc).toBe(10);
+    });
+
+    test('the tree have a filter method that allow filter tree nodes that not satisfied some restriction',() => {
+      const newTree = createBST(4,1,2,7,6);
+      newTree.filter(v => v%2 === 0);
+
+      expect(newTree.contain(1)).toBeFalsy();
+      expect(newTree.contain(7)).toBeFalsy();
+      expect(newTree.contain(2)).toBeTruthy();
+      expect(newTree.contain(4)).toBeTruthy();
+      expect(newTree.contain(6)).toBeTruthy();
     });
   });
 });
