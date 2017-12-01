@@ -17,12 +17,12 @@ const nodePrototype = {
     );
   },
   succesor() {
-    return this.rightChild
+    return this.rightChild && !this.rightChild.isALeaf()
       ? minOf(this.rightChild)
       : parentSuccesor(this.parentNode, this);
   },
   predecesor() {
-    return this.leftChild
+    return this.leftChild && !this.leftChild.isALeaf()
       ? maxOf(this.leftChild)
       : parentPredecesor(this.parentNode, this);
   },
