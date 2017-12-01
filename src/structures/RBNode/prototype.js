@@ -10,7 +10,7 @@ const rbNodePrototype = {
   hasChildrens() {
     return !this.leftChild.isALeaf() || !this.rightChild.isALeaf();
   },
-  rotateToLeft() {
+  rotateToLeft(tree) {
     if (this.rightChild.isALeaf()) {
       launch(unableToMakeLeftRotation);
     } else {
@@ -27,6 +27,9 @@ const rbNodePrototype = {
         const nodeSide = this.isALeftChild() ? 'leftChild' : 'rightChild';
         this.parentNode[nodeSide] = nodeRightChild;
       }
+      else{
+        tree.rootNode = nodeRightChild;
+      }
 
       nodeRightChild.parentNode = this.parentNode;
 
@@ -34,7 +37,7 @@ const rbNodePrototype = {
       this.parentNode = nodeRightChild;
     }
   },
-  rotateToRight() {
+  rotateToRight(tree) {
     if (this.leftChild.isALeaf()) {
       launch(unableToMakeRightRotation);
     } else {
@@ -51,6 +54,9 @@ const rbNodePrototype = {
         const nodeSide = this.isALeftChild() ? 'leftChild' : 'rightChild';
         this.parentNode[nodeSide] = nodeLeftChild;
       }
+      else{
+        tree.rootNode = nodeLeftChild;
+      }
 
       nodeLeftChild.rightChild = this;
 
@@ -58,7 +64,7 @@ const rbNodePrototype = {
       this.parentNode = nodeLeftChild;
     }
   },
-  fixTheTree() {
+  fixTheTree(tree) {
     let z = this;
     while (z.parentNode && z.parentNode.getColor() === 'RED') {
       if (z.parentNode.isALeftChild()) {
@@ -72,12 +78,12 @@ const rbNodePrototype = {
         } else {
           if (!z.isALeftChild()) {
             z = z.parentNode;
-            z.rotateToLeft();
+            z.rotateToLeft(tree);
           }
 
           z.parentNode.setColor('BLACK');
           z.parentNode.parentNode.setColor('RED');
-          z.parentNode.parentNode.rotateToRight();
+          z.parentNode.parentNode.rotateToRight(tree);
         }
       } else {
         const y = z.parentNode.parentNode.leftChild;
@@ -90,11 +96,11 @@ const rbNodePrototype = {
         } else {
           if (z.isALeftChild()) {
             z = z.parentNode;
-            z.rotateToRight();
+            z.rotateToRight(tree);
           }
           z.parentNode.setColor('BLACK');
           z.parentNode.parentNode.setColor('RED');
-          z.parentNode.parentNode.rotateToLeft();
+          z.parentNode.parentNode.rotateToLeft(tree);
         }
       }
     }
