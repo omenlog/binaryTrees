@@ -62,13 +62,17 @@ function reduceTree(fn, acc, treeNode) {
     : reduceTree(fn, fn(acc, treeNode.getValue()), treeNode.succesor());
 }
 
-function filterTree(fn, tree, treeNode) {
-  const actualNode = treeNode;
-  if (actualNode !== undefined) {
-    if (!fn(actualNode.getValue())) {
-      removeFrom(tree, treeNode);
+function filterTree(fn,tree,treeNode){
+  if(treeNode !== undefined){
+    const succesor = treeNode.succesor();
+
+    if(!fn(treeNode.getValue())){
+      removeFrom(tree,treeNode);
     }
-    filterTree(fn, tree, treeNode.succesor());
+
+    if(succesor !== undefined){
+      filterTree(fn,tree,tree.find(succesor.getValue()));
+    }
   }
 }
 
