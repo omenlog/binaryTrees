@@ -2,7 +2,7 @@
 
 describe('Red Black Tree tests', () => {
   const { createRBT } = require('structures/RBT');
-  const {createRBNode} = require('structures/RBNode');
+  const { createRBNode } = require('structures/RBNode');
 
   it('should export a createRBT function', () => {
     expect(createRBT).toBeDefined();
@@ -14,19 +14,19 @@ describe('Red Black Tree tests', () => {
     expect(newRBTree.rootNode).toBeUndefined();
   });
 
-  it('should create a new red black tree with values passed as params inside',() => {
-    const newRBTree = createRBT(1,2,3);
-    expect(newRBTree.contain(1,2,3)).not.toBeFalsy();
+  it('should create a new red black tree with values passed as params inside', () => {
+    const newRBTree = createRBT(1, 2, 3);
+    expect(newRBTree.contain(1, 2, 3)).not.toBeFalsy();
   });
 
-  it('should initialize new tree with initial values passed as array',() => {
-    const newRBTree = createRBT([1,3,2]);
-    expect(newRBTree.contain(1,2,3)).not.toBeFalsy();
+  it('should initialize new tree with initial values passed as array', () => {
+    const newRBTree = createRBT([1, 3, 2]);
+    expect(newRBTree.contain(1, 2, 3)).not.toBeFalsy();
   });
 
-  it('should create new tree with initial values passed as simple values and array at the same time',() => {
-    const newRBTree = createRBT(1,[4,5],3,[2]);
-    expect(newRBTree.contain(1,2,3,4,5)).not.toBeFalsy();
+  it('should create new tree with initial values passed as simple values and array at the same time', () => {
+    const newRBTree = createRBT(1, [4, 5], 3, [2]);
+    expect(newRBTree.contain(1, 2, 3, 4, 5)).not.toBeFalsy();
   });
 
   it('should create a new tree that allow introduce new nodes in the tree', () => {
@@ -52,29 +52,29 @@ describe('Red Black Tree tests', () => {
     expect(newRBTree.contain(3)).toBeTruthy();
   });
 
-  it('should create a new tree capable of insert new nodes taking from and array',() => {
+  it('should create a new tree capable of insert new nodes taking from and array', () => {
     const newRBTree = createRBT();
-    newRBTree.insert([2,3,1]);
+    newRBTree.insert([2, 3, 1]);
 
     expect(newRBTree.contain(1)).toBeTruthy();
     expect(newRBTree.contain(2)).toBeTruthy();
     expect(newRBTree.contain(3)).toBeTruthy();
   });
 
-  it('should create a new tree capable of insert new nodes object passed as argument to insert function',() => {
+  it('should create a new tree capable of insert new nodes object passed as argument to insert function', () => {
     const newRBTree = createRBT();
-    const node1 = createRBNode(1,'RED');
+    const node1 = createRBNode(1, 'RED');
 
     newRBTree.insert(node1);
     expect(newRBTree.rootNode.getValue()).toBe(1);
     expect(newRBTree.rootNode.getColor()).toBe('BLACK');
   });
 
-  it('should create a new tree capable of insert nodes of different form in one single call',() => {
+  it('should create a new tree capable of insert nodes of different form in one single call', () => {
     const newRBTree = createRBT();
 
-    const node4 = createRBNode(4,'RED');
-    newRBTree.insert([2,1],node4,3);
+    const node4 = createRBNode(4, 'RED');
+    newRBTree.insert([2, 1], node4, 3);
 
     expect(newRBTree.contain(1)).toBeTruthy();
     expect(newRBTree.contain(2)).toBeTruthy();
@@ -82,16 +82,16 @@ describe('Red Black Tree tests', () => {
     expect(newRBTree.contain(4)).toBeTruthy();
   });
 
-  test('if the same value is inserted two time in the tree then the tree reamin unchanged',() => {
-    const newRBTree = createRBT(2,3,6);
+  test('if the same value is inserted two time in the tree then the tree reamin unchanged', () => {
+    const newRBTree = createRBT(2, 3, 6);
     newRBTree.insert(6);
     newRBTree.insert(6);
     newRBTree.remove(6);
     expect(newRBTree.contain(6)).toBeFalsy();
   });
 
-  test('if the value being deleted if not present in the tree then this remain unchanged',() => {
-    const newRBTree = createRBT(1,2,3,4);
+  test('if the value being deleted if not present in the tree then this remain unchanged', () => {
+    const newRBTree = createRBT(1, 2, 3, 4);
 
     newRBTree.remove(10);
     newRBTree.remove(23);
@@ -102,24 +102,24 @@ describe('Red Black Tree tests', () => {
     expect(newRBTree.contain(4)).toBeTruthy();
   });
 
-  it('should create a new tree capable of remove nodes from it correctly',() => {
+  it('should create a new tree capable of remove nodes from it correctly', () => {
     const newRBTree = createRBT();
-    newRBTree.insert(1,2,3,5);
+    newRBTree.insert(1, 2, 3, 5);
 
     newRBTree.remove(3);
     expect(newRBTree.contain(3)).toBeFalsy();
     expect(newRBTree.find(5).getColor()).toBe('BLACK');
 
     const anotherTree = createRBT();
-    anotherTree.insert(1,2,4,5,6,10).remove(4);
+    anotherTree.insert(1, 2, 4, 5, 6, 10).remove(4);
     expect(anotherTree.contain(4)).toBeFalsy();
 
-    const treeWithTwoNodes = createRBT().insert(1,2);
+    const treeWithTwoNodes = createRBT().insert(1, 2);
     treeWithTwoNodes.remove(1);
     expect(treeWithTwoNodes.contain(1)).toBeFalsy();
     expect(treeWithTwoNodes.find(2).getColor()).toBe('BLACK');
 
-    const testTree = createRBT().insert(6,10,32,21,8,9,34,20);
+    const testTree = createRBT().insert(6, 10, 32, 21, 8, 9, 34, 20);
 
     testTree.remove(21);
     expect(testTree.find(20).getColor()).toBe('BLACK');
@@ -137,15 +137,43 @@ describe('Red Black Tree tests', () => {
     expect(treeWithOneNode.contain(16)).toBeFalsy();
   });
 
-  it('should create a new capable of remove more than one node in one single call to remove function',() => {
-    const newTree = createRBT(1,3,5,2,4);
+  it('should create a new capable of remove more than one node in one single call to remove function', () => {
+    const newTree = createRBT(1, 3, 5, 2, 4);
 
-    newTree.remove(2,3);
+    newTree.remove(2, 3);
     expect(newTree.contain(2)).toBeFalsy();
     expect(newTree.contain(3)).toBeFalsy();
 
-    newTree.remove([4,5]);
+    newTree.remove([4, 5]);
     expect(newTree.contain(4)).toBeFalsy();
     expect(newTree.contain(5)).toBeFalsy();
+  });
+
+  test('the tree have a filter method that allow filter tree nodes that not satisfied some restriction', () => {
+    const newTree = createRBT(4, 1, 2, 7, 6);
+    newTree.filter(v => v % 2 === 0);
+
+    expect(newTree.contain(1)).toBeFalsy();
+    expect(newTree.contain(7)).toBeFalsy();
+
+    expect(newTree.contain(2)).toBeTruthy();
+    expect(newTree.contain(4)).toBeTruthy();
+    expect(newTree.contain(6)).toBeTruthy();
+
+    const anotherTree = createRBT(4, 10, 3, 11, 2, 6, 1, 9);
+    anotherTree.filter(v => v % 2 === 0 && v % 3 === 0);
+
+    expect(anotherTree.contain(1)).toBeFalsy();
+    expect(anotherTree.contain(2)).toBeFalsy();
+    expect(anotherTree.contain(3)).toBeFalsy();
+    expect(anotherTree.contain(4)).toBeFalsy();
+    expect(anotherTree.contain(9)).toBeFalsy();
+    expect(anotherTree.contain(10)).toBeFalsy();
+    expect(anotherTree.contain(11)).toBeFalsy();
+
+    expect(anotherTree.contain(6));
+
+    anotherTree.filter(v => v === 1);
+    expect(anotherTree.rootNode).toBeUndefined();
   });
 });
