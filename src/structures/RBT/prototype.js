@@ -2,7 +2,7 @@
 
 const prototypeBST = require('../BST/prototype');
 const { createRBNode } = require('../RBNode');
-const { addIn, removeFrom } = require('./privateFunc');
+const { addIn, removeFrom, filterTree} = require('./privateFunc');
 const { isANodeThis } = require('../Node');
 const { flat } = require('../../utils/tools');
 
@@ -21,6 +21,10 @@ const prototypeRB = Object.assign(Object.create(prototypeBST), {
       .map(createRBNodes)
       .forEach(newNode => addIn(this, newNode));
 
+    return this;
+  },
+  filter(fn){
+    filterTree(fn,this,this.min());
     return this;
   },
   remove(...args) {
