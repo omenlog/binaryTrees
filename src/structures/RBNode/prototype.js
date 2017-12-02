@@ -64,7 +64,7 @@ const rbNodePrototype = {
       this.parentNode = nodeLeftChild;
     }
   },
-  fixTheTree(tree) {
+  insertFixUp(tree) {
     let z = this;
     while (z.parentNode && z.parentNode.getColor() === 'RED') {
       if (z.parentNode.isALeftChild()) {

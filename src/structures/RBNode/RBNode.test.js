@@ -160,7 +160,7 @@ describe('test for Red Black Tree Nodes',() => {
       node5.insertChild(node4);
       node14.insertChild(node15);
 
-      node4.fixTheTree({rootNode: node11});
+      node4.insertFixUp({rootNode: node11});
 
       expect(node7.parentNode).toBeUndefined();
       expect(node7.leftChild.getValue()).toBe(2);
@@ -180,7 +180,7 @@ describe('test for Red Black Tree Nodes',() => {
 
       node6.insertChild(node0);
       node0.insertChild(node3);
-      node3.fixTheTree({rootNode: node6});
+      node3.insertFixUp({rootNode: node6});
     });
 
     test('small tests for test different case of fixup proccess done after and insertion is finished on the tree',() => {
@@ -195,7 +195,7 @@ describe('test for Red Black Tree Nodes',() => {
       node3.insertChildrens(node2,node4);
       node2.insertChild(node1);
 
-      node1.fixTheTree({rootNode: node3});
+      node1.insertFixUp({rootNode: node3});
 
       expect(node2.getColor()).toBe('BLACK');
       expect(node4.getColor()).toBe('BLACK');
@@ -211,7 +211,7 @@ describe('test for Red Black Tree Nodes',() => {
       node7.insertChild(node5);
       node5.insertChild(node6);
 
-      node6.fixTheTree({rootNode: node7});
+      node6.insertFixUp({rootNode: node7});
 
       expect(node7.getColor()).toBe('RED');
       expect(node5.getColor()).toBe('RED');
@@ -230,7 +230,7 @@ describe('test for Red Black Tree Nodes',() => {
       node14.insertChildrens(node13,node16);
       node16.insertChild(node15);
 
-      node15.fixTheTree({rootNode: node14});
+      node15.insertFixUp({rootNode: node14});
 
       expect(node14.getColor()).toBe('RED');
       expect(node13.getColor()).toBe('BLACK');
@@ -246,7 +246,7 @@ describe('test for Red Black Tree Nodes',() => {
       node10.insertChild(node12);
       node12.insertChild(node11);
 
-      node11.fixTheTree({rootNode: node10});
+      node11.insertFixUp({rootNode: node10});
 
       expect(node11.parentNode).toBeUndefined();
       expect(node11.leftChild.getValue()).toBe(10);

@@ -17,7 +17,7 @@ function updateRootOf(tree) {
 function addIn(tree, newRBNode) {
   /* calling the insert function of BST prototype object */
   Object.getPrototypeOf(tree.__proto__).insert.call(tree, newRBNode);
-  newRBNode.fixTheTree(tree);
+  newRBNode.insertFixUp(tree);
   updateRootOf(tree);
   return tree;
 }
