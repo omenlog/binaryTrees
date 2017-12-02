@@ -17,7 +17,7 @@ function updateRootOf(tree) {
 function addIn(tree, newRBNode) {
   /* calling the insert function of BST prototype object */
   Object.getPrototypeOf(tree.__proto__).insert.call(tree, newRBNode);
-  newRBNode.fixTheTree();
+  newRBNode.fixTheTree(tree);
   updateRootOf(tree);
   return tree;
 }
@@ -41,6 +41,7 @@ function removeFrom(rbTree, node) {
     nodeOriginalColor = succesor.getColor();
     x = succesor.rightChild;
     replaceIn(rbTree, succesor, succesor.rightChild);
+
   }
 
   if (nodeOriginalColor === 'BLACK') {
@@ -66,7 +67,7 @@ function deleteFixUp(tree, x) {
       if (sibling.getColor() === 'RED') {
         sibling.setColor('BLACK');
         parentNode.setColor('RED');
-        parentNode.rotateToLeft();
+        parentNode.rotateToLeft(tree);
         sibling = parentNode.rightChild;
       }
 
@@ -80,14 +81,15 @@ function deleteFixUp(tree, x) {
         if (sibling.rightChild.getColor() === 'BLACK') {
           sibling.leftChild.setColor('BLACK'); // case 3
           sibling.setColor('RED'); // case 3
-          sibling.rotateToRight(); // case 3
+          sibling.rotateToRight(tree); // case 3
           sibling = parentNode.rightChild; // case 3
         }
 
         sibling.setColor(parentNode.getColor()); // case 4
         parentNode.setColor('BLACK'); // case 4
         sibling.rightChild.setColor('BLACK'); // case 4
-        parentNode.rotateToLeft(); // case 4
+        parentNode.rotateToLeft(tree); // case 4
+
         node = tree.rootNode; // case 4
       }
     } else {
@@ -96,7 +98,7 @@ function deleteFixUp(tree, x) {
       if (sibling.getColor() === 'RED') {
         sibling.setColor('BLACK');
         parentNode.setColor('RED');
-        parentNode.rotateToRight()();
+        parentNode.rotateToRight(tree);
         sibling = parentNode.leftChild;
       }
 
@@ -110,14 +112,14 @@ function deleteFixUp(tree, x) {
         if (sibling.leftChild.getColor() === 'BLACK') {
           sibling.rightChild.setColor('BLACK');
           sibling.setColor('RED');
-          sibling.rotateToLeft();
+          sibling.rotateToLeft(tree);
           sibling = parentNode.leftChild;
         }
 
         sibling.setColor(parentNode.getColor());
         parentNode.setColor('BLACK');
         sibling.leftChild.setColor('BLACK');
-        parentNode.rotateToRight();
+        parentNode.rotateToRight(tree);
         node = tree.rootNode;
       }
     }
@@ -126,9 +128,24 @@ function deleteFixUp(tree, x) {
   node.setColor('BLACK');
 }
 
+function filterTree(fn,tree,treeNode){
+  if(treeNode !== undefined && !treeNode.isALeaf()){
+    const succesor = treeNode.succesor();
+
+    if(!fn(treeNode.getValue())){
+      removeFrom(tree,treeNode);
+    }
+
+    if(succesor !== undefined){
+      filterTree(fn,tree,tree.find(succesor.getValue()));
+    }
+  }
+}
+
 module.exports = {
   updateRootOf,
   addIn,
   removeFrom,
+  filterTree,
   deleteFixUp
 };
