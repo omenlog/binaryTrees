@@ -184,7 +184,7 @@ The tree also implement the especial `Symbol.iterator` so it can be used with an
 
 #### Reduce
 
-We can use reduce over one tree created just like we do with standard arrays
+We can use reduce over one tree created just like we do with standard arrays:
 
 ```js
   const newTree = createRBT(1,2,3,4,5);
@@ -197,4 +197,14 @@ We can use reduce over one tree created just like we do with standard arrays
 
   console.log(treeTotal); // 15
   console.log(treeFactorial); // 120
+```
+
+#### Filter
+
+The filter function is also available, this function is similar to the filter function of the arrays with the difference that a new tree is not created after the filtering process but the existing tree is modified:
+
+```js
+  const newTree = createRBT(4, 10, 3, 11, 2, 6, 1, 9);
+  newTree.filter(v => v % 2 === 0 && v % 3 === 0); // after this the tree only has the value 6
+  newTree.filter(v => v === 1); // now the tree is empty
 ```
